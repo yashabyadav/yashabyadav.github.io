@@ -1,0 +1,137 @@
+---
+import { getCollection } from 'astro:content';
+import Header from '../components/Header.astro';
+import Project from "../components/Project.astro";
+import Sidebar from "../components/Sidebar.astro";
+
+// Get all published notes
+const allNotes = await getCollection('notes', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Sort by date (newest first)
+allNotes.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Group notes by folder
+const notesByFolder = allNotes.reduce((acc, note) => {
+  const folder = note.data['website-folder'] || 'Uncategorized';
+  if (!acc[folder]) {
+    acc[folder] = [];
+  }
+  acc[folder].push(note);
+  return acc;
+}, {} as Record<string, typeof allNotes>);
+
+// Get folder display names
+const folderNames: Record<string, string> = {
+  'biology': 'Biology',
+  'programming': 'Programming',
+  'productivity': 'Productivity',
+  'physics': 'Physics',
+  'mathematics': 'Mathematics',
+  'computational-biology': 'Computational Biology',
+  'uncategorized': 'Other Notes'
+};
+
+// Function to get display name, handling case-insensitive matching
+function getFolderDisplayName(folder: string): string {
+  const lowerFolder = folder.toLowerCase();
+  return folderNames[lowerFolder] || folder.charAt(0).toUpperCase() + folder.slice(1);
+}
+---
+
+<!DOCTYPE html>
+<html
+>
+  <Header title="Notes | Yashab Yadav" />
+  <body>
+    <div class="content">
+        <Sidebar selectedItem="notes" />
+      <nav class="main">
+        <div class="container">
+          <div class="back-nav-container">
+            <a href="/" class="back-nav-button w-inline-block"
+              ><img src="/assets/back.svg" loading="lazy" alt="" class="back-nav-img" />
+              <div>Back</div></a
+            >
+          </div>
+          <div class="content-container">
+            <h1>Notes</h1>
+            <p class="note-subtitle">These are some of my notes that I like to refer from time to time. I am putting them here to try out the idea of <a href="https://notes.andymatuschak.org/About_these_notes?stackedNotes=z21cgR9K3UcQ5a7yPsj2RUim3oM2TzdBByZu" class="mini-label">working with your garage door open</a>, and see how it affects the way I approach my knowledge collection.</p>
+            
+            <div class="folders-grid">
+              {Object.entries(notesByFolder).map(([folder, notes]) => {
+                const folderId = folder.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+                return (
+                  <div class="folder-card">
+                    <button 
+                      class="folder-card-header" 
+                      data-folder={folderId}
+                      aria-expanded="false"
+                    >
+                      <div class="folder-info">
+                        <h2 class="folder-card-title">{getFolderDisplayName(folder)}</h2>
+                        <p class="folder-note-count">{notes.length} {notes.length === 1 ? 'note' : 'notes'}</p>
+                      </div>
+                      <svg class="folder-expand-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </button>
+                    
+                    <div class="folder-card-content" id={`folder-${folderId}`}>
+                      <div class="resouce-items">
+                        {notes.map(note => {
+                          const title = note.data.title || note.slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                          const description = note.data.description || 'No description available';
+                          return (
+                            <a href={`/notes/${note.slug}`} style="text-decoration: none; color: inherit;">
+                              <Project 
+                                title={title} 
+                                desc={[description]}
+                                tech={note.data.tags}
+                              />
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <script is:inline>
+      // Use event delegation on document to handle folder cards
+      // This works even after navigation because it's attached to document
+      document.addEventListener('click', function(e) {
+        // Check if clicked element or its parent is a folder-card-header
+        const button = e.target.closest('.folder-card-header');
+        if (!button) return;
+        
+        e.preventDefault();
+        
+        const folderId = button.getAttribute('data-folder');
+        const content = document.getElementById(`folder-${folderId}`);
+        const icon = button.querySelector('.folder-expand-icon');
+        
+        if (!content || !icon) return;
+        
+        content.classList.toggle('expanded');
+        
+        if (content.classList.contains('expanded')) {
+          icon.style.transform = 'rotate(180deg)';
+          button.setAttribute('aria-expanded', 'true');
+        } else {
+          icon.style.transform = 'rotate(0deg)';
+          button.setAttribute('aria-expanded', 'false');
+        }
+      });
+    </script>
+
+    <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+  </body>
+</html>

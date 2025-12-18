@@ -3,6 +3,7 @@ dist/
 
 # generated types
 .astro/
+private/
 
 # dependencies
 node_modules/

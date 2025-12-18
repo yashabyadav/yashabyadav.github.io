@@ -7,9 +7,12 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sync-notes": "node scripts/sync-obsidian.js"
   },
   "dependencies": {
-    "astro": "^5.1.5"
+    "astro": "^5.1.5",
+    "rehype-katex": "^7.0.0",
+    "remark-math": "^6.0.0"
   }
 }

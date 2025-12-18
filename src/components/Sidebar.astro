@@ -15,14 +15,14 @@ const { selectedItem } = Astro.props;
     <a href="/" class="w-nav-brand" aria-label="home">
       <div class="niv-data">
         <img
-          src="/assets/sam.jpg"
+          src="/assets/yashab.jpg"
           loading="eager"
           alt="Profile picture"
           class="niv-image"
         />
         <div>
-          <div class="label-white">Sam Bernstein</div>
-          <div class="label-gray">Software Engineer</div>
+          <div class="label-white">Yashab Yadav</div>
+          <div class="label-gray">Biophyiscs PhD student</div>
         </div>
       </div>
     </a>
@@ -42,7 +42,7 @@ const { selectedItem } = Astro.props;
         />
         <div>Home</div>
       </a>
-      <a
+      <!-- a
         href="/software-development"
         class={`nav-link-container w-inline-block ${
           selectedItem === 'software-development' ? 'w--current' : ''
@@ -58,22 +58,36 @@ const { selectedItem } = Astro.props;
           class="nav-link-image"
         />
         <div>Software development</div>
-      </a>
+      </a -->
       <a
-        href="/devops"
+        href="/notes"
         class={`nav-link-container w-inline-block ${
-          selectedItem === 'devops' ? 'w--current' : ''
+          selectedItem === 'notes' ? 'w--current' : ''
         }`}
       >
         <img
-          src="/assets/dns.svg"
+          src="/assets/notes.svg"
           loading="eager"
           alt=""
           class="nav-link-image"
         />
-        <div>DevOps</div>
+        <div>Notes</div>
       </a>
       <a
+        href="/projects"
+        class={`nav-link-container w-inline-block ${
+          selectedItem === 'projects' ? 'w--current' : ''
+        }`}
+      >
+        <img
+          src="/assets/hammer.svg"
+          loading="eager"
+          alt=""
+          class="nav-link-image"
+        />
+        <div>Projects</div>
+      </a>
+      <!-- a
         href="/personal-projects"
         class={`nav-link-container w-inline-block ${
           selectedItem === 'personal-projects' ? 'w--current' : ''
@@ -86,7 +100,7 @@ const { selectedItem } = Astro.props;
           class="nav-link-image"
         />
         <div>Personal projects</div>
-      </a>
+      </a -->
     </nav>
 
     <div
@@ -118,4 +132,10 @@ const { selectedItem } = Astro.props;
       if (cleanup) cleanup();
     });
   </script>
+
+  <style>
+    .nav-link-image {
+      filter: brightness(0) invert(1);
+    }
+  </style>
 </aside>
