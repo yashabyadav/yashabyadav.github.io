@@ -12,6 +12,11 @@ const notesCollection = defineCollection({
   }),
 });
 
+const personalInfoCollection = defineCollection({
+  type: 'data',
+});
+
 export const collections = {
   notes: notesCollection,
+  personal_info: personalInfoCollection,
 };

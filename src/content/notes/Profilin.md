@@ -1,4 +1,5 @@
 ---
+date: 2025-12-17
 tags:
   - actin-related-protein
   - protein-flashcards
