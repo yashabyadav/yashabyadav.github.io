@@ -3,7 +3,7 @@ const { title, desc, tech } = Astro.props;
 ---
 
 <div class="single-item">
-  <h3>{title}</h3>
+  <h3 style="color: #ffffff !important;">{title}</h3>
   <div class="project-desc project-desc-list w-richtext">
     <ul role="list">
       {desc.map(item => <li>{item}</li>)}

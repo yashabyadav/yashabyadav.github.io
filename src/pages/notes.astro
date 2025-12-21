@@ -82,12 +82,12 @@ function getFolderDisplayName(folder: string): string {
                       <div class="resouce-items">
                         {notes.map(note => {
                           const title = note.data.title || note.slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                          const description = note.data.description || 'No description available';
+                          const description = note.data.description;
                           return (
-                            <a href={`/notes/${note.slug}`} style="text-decoration: none; color: inherit;">
+                            <a href={`/notes/${note.slug}`} style="text-decoration: none; color: inherit; display: block;">
                               <Project 
                                 title={title} 
-                                desc={[description]}
+                                desc={description ? [description] : []}
                                 tech={note.data.tags}
                               />
                             </a>
@@ -131,6 +131,157 @@ function getFolderDisplayName(folder: string): string {
         }
       });
     </script>
+
+    <style>
+      /* Folder card styling to match sidebar */
+      .folder-card {
+        background-color: #1c1c1c;
+        border: 1px solid #353535;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+
+      .folder-card-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        background-color: #1c1c1c;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .folder-card-header:hover {
+        background-color: #202020;
+      }
+
+      .folder-info {
+        text-align: left;
+      }
+
+      .folder-card-title {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem 0;
+      }
+
+      .folder-note-count {
+        color: #a8a8a8;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .folder-expand-icon {
+        transition: transform 0.3s;
+        stroke: #a8a8a8;
+      }
+
+      .folder-card-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        background-color: #1c1c1c;
+      }
+
+      .folder-card-content.expanded {
+        max-height: 5000px;
+        padding: 1rem;
+      }
+
+      .folders-grid {
+        margin-top: 2rem;
+      }
+
+      /* Link styling to match theme */
+      a.mini-label {
+        color: #a8a8a8;
+        text-decoration: underline;
+        transition: color 0.2s;
+      }
+
+      a.mini-label:hover {
+        color: #fff;
+      }
+
+      .note-subtitle {
+        color: #a8a8a8;
+        margin-top: 1rem;
+        line-height: 1.6;
+      }
+
+      /* Fix single-item colors inside folder cards */
+      .folder-card .single-item {
+        background-color: #2b2b2b !important;
+        color: #e5e7eb !important;
+        padding: 1.5rem;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+        border: 1px solid #404040;
+        transition: all 0.2s;
+      }
+
+      .folder-card .single-item:hover {
+        background-color: #353535 !important;
+        border-color: #505050;
+      }
+
+      /* Force note titles to be white - this overrides link colors */
+      .folder-card .resouce-items a h3,
+      .folder-card .resouce-items a .single-item h3,
+      .folder-card a h3 {
+        color: #ffffff !important;
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+      }
+
+      .folder-card a {
+        color: #e5e7eb !important;
+        text-decoration: none !important;
+      }
+
+      .folder-card a:visited,
+      .folder-card a:hover,
+      .folder-card a:active {
+        color: #e5e7eb !important;
+      }
+
+      .folder-card a:visited h3,
+      .folder-card a:hover h3,
+      .folder-card a:active h3 {
+        color: #ffffff !important;
+      }
+
+      /* Note description styling */
+      .folder-card .project-desc,
+      .folder-card .project-desc-list {
+        color: #d1d5db !important;
+      }
+
+      .folder-card .project-desc-list li {
+        color: #d1d5db !important;
+      }
+
+      /* Mini label and tags styling */
+      .folder-card .mini-label-white {
+        color: #9ca3af !important;
+        font-size: 0.85rem;
+      }
+
+      .folder-card .single-chip {
+        background-color: #404040 !important;
+        color: #e5e7eb !important;
+        border: 1px solid #505050;
+      }
+
+      .folder-card .gray-color {
+        color: #9ca3af !important;
+      }
+    </style>
 
     <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
   </body>
