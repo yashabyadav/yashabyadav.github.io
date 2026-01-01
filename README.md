@@ -1,3 +1,5 @@
+# Portfolio
+
 These are files for my website.
 
 I am using [Codefolio](https://github.com/danielunited/codefolio) theme for Astro.
@@ -12,6 +14,5 @@ I am using [Codefolio](https://github.com/danielunited/codefolio) theme for Astr
 - [ ] Put some graphics related to my work on the homepage on the background grid.
 
 ### Minor fixes:
-
 
 
