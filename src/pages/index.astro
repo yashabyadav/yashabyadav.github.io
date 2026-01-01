@@ -3,10 +3,8 @@ import Header from "../components/Header.astro";
 import Sidebar from "../components/Sidebar.astro";
 ---
 
-
-<!DOCTYPE html>
-<html
->
+<!doctype html>
+<html>
   <Header title="Yashab Yadav" />
   <body>
     <div class="content">
@@ -17,48 +15,103 @@ import Sidebar from "../components/Sidebar.astro";
             <div class="fold-content">
               <h1>Hi! I'm Yashab</h1>
               <p class="lead">
-                I work in understanding the mechanobiology of the cell using mathematical and computational modelling.
+                I work on understanding the mechanobiology of the cell using
+                mathematical and computational modelling.
               </p>
               <p class="lead">
-                Welcome to my online space which serves as my portfolio, notes collection, project showcases and other random stuff.
+                Welcome to my online space which serves as my portfolio, notes
+                collection, project showcases and other random stuff.
               </p>
             </div>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-              <a href="mailto:yay223@lehigh.edu" class="button w-button">Contact</a>
-              <a href="/CV_Mar_2025.pdf" download class="button w-button">Download CV</a>
+
+            <!-- About Me Section -->
+            <div class="about-section" style="">
+              <h3>About Me</h3>
+              <p>
+                I am a PhD researcher in Physics at Lehigh University working on
+                computational and mathematical models of cellular
+                mechanobiology. My research focuses on how mechanical forces
+                emerge from cytoskeletal dynamics, with recent work on actin
+                comet tail motility and force generation driven by F-actin
+                nucleation.
+              </p>
+
+              <p>
+                I specialize in building mechanistic simulations that connect
+                physical models to experimental observables. My work routinely
+                involves numerical methods, stochastic simulations, data
+                analysis, and visualization, with an emphasis on model clarity,
+                reproducibility, and interpretability.
+              </p>
+
+              <p>
+                I am comfortable working across theory, code, and data, and I
+                enjoy translating complex physical ideas into efficient
+                computational workflows. Most of my development is in Python and
+                C++, supported by scripting, automation, and visualization tools
+                tailored to research-scale problems.
+              </p>
+
+              <p>
+                In parallel with research, I have taught introductory physics
+                courses and laboratories, where I focus on building intuition
+                and helping students become confident with quantitative
+                reasoning.
+              </p>
+
+              <p>
+                I earned my Master’s degree in Physics from IIT Jodhpur and my
+                Bachelor’s degree in Physics from the University of Delhi,
+                India.
+              </p>
+              <a
+                href="/CV_Mar_2025.pdf"
+                style="margin-top: 0.9rem;"
+                download
+                class="button w-button">Download CV</a
+              >
+            </div>
+
+            <!-- Contact Section -->
+            <!-- <a href="mailto:yay223@lehigh.edu" class="button w-button">Contact</a> -->
+            <div
+              class="about-section"
+              style="margin-top: 2rem; margin-bottom: 0.9rem;"
+            >
+              <h3>Contact</h3>
+              <p>
+                Feel free to reach out to me via email at
+                <a href="mailto:yay223@lehigh.edu" style="color: aliceblue">yay223@lehigh.edu</a>, 
+              </p>
+              <p>
+                or connect with me on:
+                <a
+                  href="https://www.linkedin.com/in/yashab-yadav/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="color: aliceblue"
+                  >LinkedIn</a
+                >,
+
+                <a
+                  href="https://twitter.com/yashab_yadav"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="color: aliceblue"
+                  >Twitter</a
+                >, or check out my 
+                <a
+                  href="https://github.com/yashabyadav"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="color: aliceblue"
+                  >GitHub</a
+                >.
+              </p>
             </div>
           </main>
-          
-          <!-- About Me Section -->
-          <div class="about-section" style="margin-top: 3rem; margin-bottom: 3rem;">
-            <h3>About Me</h3>
-            <p>
-              I'm a PhD scholar at the Department of Physics at Lehigh University, where I focus on understanding 
-              cellular mechanobiology through mathematical and computational modeling. My research explores 
-              how cells generate and respond to mechanical forces, with recent work on actin comet tail motility 
-              and the role of de novo nucleation of F-actin in cellular movement.
-            </p>
-            <p>
-
-              I love my research because it requires me to use interdisciplinary approaches that combines physics, computational methods, and biological systems. This type of challenge keeps me motivated and excited about my work because if you know anything about me, it's that I cannot focus on one thing for too long! If I am stuck on physics problem, I'd rather swtich to coding a simulation or reading a biology paper to get my mind off things. 
-            </p>
-           <p>
-              Other than research, my time here at Lehigh has been spent  as a teaching assistant for introductory physics courses and labs, helping students develop intuition for fundamental physics concepts. 
-            </p>  
-            <p>
-              When I'm not vibe coding, I like to actually learn about Python concepts. Currently, I am learning how to make my code more "python-y". (Don't sleep on PEP y'all!!)
-            </p>
-            <p>
-              I completed my Master's in Physics from IIT Jodhpur and my Bachelor's from the University of Delhi. 
-            </p>
-            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.5); font-style: italic;">
-              Last updated: December 2025
-            </p>
-          </div>
-
+        </div>
       </nav>
     </div>
-
-    <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
   </body>
 </html>
