@@ -1,0 +1,74 @@
+---
+import Header from "../components/Header.astro";
+import Sidebar from "../components/Sidebar.astro";
+
+import { Image } from "astro:assets";
+import home_desk_setup_2024_11_03_pic1 from "../content/photos_page/home-desk-setup-2024-11-03-pic-1.jpg";
+import home_desk_setup_2024_11_03_pic2 from "../content/photos_page/home-desk-setup-2024-11-03-pic-2.jpg";
+import home_desk_setup_2024_04_13 from "../content/photos_page/home-desk-setup-2024-04-13.jpg";
+---
+
+<!doctype html>
+<html>
+    <Header title="Photos | Yashab Yadav" />
+    <body>
+        <div class="content">
+            <Sidebar selectedItem="photos" />
+            <nav class="main">
+                <div class="container">
+                    <div class="back-nav-container">
+                        <a href="/" class="back-nav-button w-inline-block">
+                            <img
+                                src="/assets/back.svg"
+                                loading="lazy"
+                                alt=""
+                                class="back-nav-img"
+                            />
+                            <div>Back</div>
+                        </a>
+                    </div>
+                    <div class="content-container">
+                        <h1 class="heading-red">Photos</h1>
+                        <h2
+                            style="margin-top: 1rem; color: rgba(255, 255, 255, 0.7); font-size: 1.5rem;"
+                        >
+                            Evolution of my desktop setups over the years
+                        </h2>
+                        <!-- <Image src={home_desk_setup_2024_11_03_pic1} alt="Home Desk Setup 2024-11-03" width={1200} height={800} style="margin-top: 2rem; border-radius: 8px; width: 100%; height: auto;" /> -->
+                        <figure style="margin-top: 2rem;">
+                            <Image
+                                src={home_desk_setup_2024_11_03_pic1}
+                                alt="Home Desk Setup 2024-11-03"
+                                style="border-radius: 8px; width: 100%; height: auto;"
+                            />
+                            <Image
+                                src={home_desk_setup_2024_11_03_pic2}
+                                alt="Home Desk Setup 2024-11-03 - Pic 2"
+                                style="border-radius: 8px; width: 100%; height: auto; margin-top: 1rem;"
+                            />
+                            <figcaption
+                                style="margin-top: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;"
+                            >
+                                Home Desk Setup - November 3, 2024
+                            </figcaption>
+                        </figure>
+                        <figure style="margin-top: 2rem;">
+                            <Image
+                                src={home_desk_setup_2024_04_13}
+                                alt=""
+                                style="border-radius: 8px; width: 100%; height: auto;"
+                            />
+                            <figcaption
+                                style="margin-top: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;"
+                            >
+                                Home Desk Setup - April 13, 2024
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+    </body>
+</html>
