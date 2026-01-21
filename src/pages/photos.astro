@@ -29,42 +29,257 @@ import home_desk_setup_2024_04_13 from "../content/photos_page/home-desk-setup-2
                     </div>
                     <div class="content-container">
                         <h1 class="heading-red">Photos</h1>
-                        <h2
-                            style="margin-top: 1rem; color: rgba(255, 255, 255, 0.7); font-size: 1.5rem;"
-                        >
-                            Evolution of my desktop setups over the years
-                        </h2>
-                        <!-- <Image src={home_desk_setup_2024_11_03_pic1} alt="Home Desk Setup 2024-11-03" width={1200} height={800} style="margin-top: 2rem; border-radius: 8px; width: 100%; height: auto;" /> -->
-                        <figure style="margin-top: 2rem;">
-                            <Image
-                                src={home_desk_setup_2024_11_03_pic1}
-                                alt="Home Desk Setup 2024-11-03"
-                                style="border-radius: 8px; width: 100%; height: auto;"
-                            />
-                            <Image
-                                src={home_desk_setup_2024_11_03_pic2}
-                                alt="Home Desk Setup 2024-11-03 - Pic 2"
-                                style="border-radius: 8px; width: 100%; height: auto; margin-top: 1rem;"
-                            />
-                            <figcaption
-                                style="margin-top: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;"
-                            >
-                                Home Desk Setup - November 3, 2024
-                            </figcaption>
-                        </figure>
-                        <figure style="margin-top: 2rem;">
-                            <Image
-                                src={home_desk_setup_2024_04_13}
-                                alt=""
-                                style="border-radius: 8px; width: 100%; height: auto;"
-                            />
-                            <figcaption
-                                style="margin-top: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;"
-                            >
-                                Home Desk Setup - April 13, 2024
-                            </figcaption>
-                        </figure>
+
+                        <div class="masonry-grid">
+                            <figure class="masonry-item">
+                                <Image
+                                    src={home_desk_setup_2024_11_03_pic1}
+                                    alt="Home Desk Setup 2024-11-03"
+                                    class="photo-img"
+                                />
+                                <figcaption>
+                                    Home Desk Setup - Nov 3, 2024
+                                </figcaption>
+                            </figure>
+
+                            <figure class="masonry-item">
+                                <Image
+                                    src={home_desk_setup_2024_11_03_pic2}
+                                    alt="Home Desk Setup 2024-11-03 - Pic 2"
+                                    class="photo-img"
+                                />
+                                <figcaption>
+                                    Home Desk Setup - Nov 3, 2024 (Detail)
+                                </figcaption>
+                            </figure>
+
+                            <figure class="masonry-item">
+                                <Image
+                                    src={home_desk_setup_2024_04_13}
+                                    alt="Home Desk Setup 2024-04-13"
+                                    class="photo-img"
+                                />
+                                <figcaption>
+                                    Home Desk Setup - April 13, 2024
+                                </figcaption>
+                            </figure>
+                        </div>
                     </div>
+
+                    <div id="lightbox" class="lightbox hidden">
+                        <span class="lightbox-close">&times;</span>
+                        <div class="lightbox-content">
+                            <img id="lightbox-img" src="" alt="" />
+                            <div id="lightbox-caption" class="lightbox-caption">
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        const lightbox = document.getElementById("lightbox");
+                        const lightboxImg = document.getElementById(
+                            "lightbox-img",
+                        ) as HTMLImageElement;
+                        const lightboxCaption =
+                            document.getElementById("lightbox-caption");
+                        const closeBtn =
+                            document.querySelector(".lightbox-close");
+                        const images =
+                            document.querySelectorAll(".masonry-item img");
+
+                        images.forEach((img) => {
+                            img.addEventListener("click", (e) => {
+                                e.stopPropagation();
+                                const src = img.getAttribute("src");
+                                const alt = img.getAttribute("alt");
+                                // Try to find figcaption in the parent figure
+                                const caption = img
+                                    .closest("figure")
+                                    ?.querySelector("figcaption")
+                                    ?.textContent?.trim();
+
+                                lightboxImg.src = src;
+                                lightboxImg.alt = alt;
+                                lightboxCaption.textContent =
+                                    caption || alt || "";
+
+                                lightbox.classList.remove("hidden");
+                                document.body.style.overflow = "hidden"; // Disable scroll
+                            });
+                        });
+
+                        function closeLightbox() {
+                            lightbox.classList.add("hidden");
+                            document.body.style.overflow = "";
+                            lightboxImg.src = "";
+                        }
+
+                        closeBtn.addEventListener("click", closeLightbox);
+
+                        lightbox.addEventListener("click", (e) => {
+                            const target = e.target as HTMLElement;
+                            if (
+                                target === lightbox ||
+                                target.classList.contains("lightbox-content")
+                            ) {
+                                closeLightbox();
+                            }
+                        });
+
+                        document.addEventListener("keydown", (e) => {
+                            if (
+                                e.key === "Escape" &&
+                                !lightbox.classList.contains("hidden")
+                            ) {
+                                closeLightbox();
+                            }
+                        });
+                    </script>
+
+                    <style>
+                        .heading-red {
+                            margin-bottom: 1.5rem;
+                        }
+
+                        /* Override global container width for photos page */
+                        .container {
+                            max-width: 100%;
+                        }
+
+                        .content-container {
+                            max-width: 100%;
+                            padding-right: 2rem;
+                        }
+
+                        .masonry-grid {
+                            column-count: 3;
+                            column-gap: 0px;
+                            width: 100%;
+                        }
+
+                        .masonry-item {
+                            break-inside: avoid;
+                            margin: 8px;
+                            margin-bottom: 0px;
+                            position: relative;
+                            cursor: zoom-in;
+                            overflow: hidden;
+                            border-radius: 8px;
+                        }
+
+                        .photo-img {
+                            display: block;
+                            width: 100%;
+                            height: auto;
+                            border-radius: 8px;
+                            transition: transform 0.3s ease;
+                        }
+
+                        .masonry-item:hover .photo-img {
+                            transform: scale(1.02);
+                        }
+
+                        figcaption {
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            background: linear-gradient(
+                                to top,
+                                rgba(0, 0, 0, 0.8),
+                                transparent
+                            );
+                            color: white;
+                            padding: 2rem 1rem 1rem;
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                            pointer-events: none; /* Let clicks pass through to image */
+                            border-bottom-left-radius: 8px;
+                            border-bottom-right-radius: 8px;
+                        }
+
+                        .masonry-item:hover figcaption {
+                            opacity: 1;
+                        }
+
+                        /* Lightbox */
+                        .lightbox {
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(0, 0, 0, 0.85);
+                            backdrop-filter: blur(8px);
+                            z-index: 1000;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            opacity: 1;
+                            transition: opacity 0.3s ease;
+                        }
+
+                        .lightbox.hidden {
+                            display: none;
+                            opacity: 0;
+                            pointer-events: none;
+                        }
+
+                        .lightbox-content {
+                            max-width: 90vw;
+                            max-height: 90vh;
+                            position: relative;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                        }
+
+                        .lightbox-content img {
+                            max-width: 100%;
+                            max-height: 85vh;
+                            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+                            border-radius: 4px;
+                        }
+
+                        .lightbox-caption {
+                            margin-top: 1rem;
+                            color: #fff;
+                            font-size: 1.1rem;
+                            text-align: center;
+                        }
+
+                        .lightbox-close {
+                            position: absolute;
+                            top: 20px;
+                            right: 30px;
+                            color: #f1f1f1;
+                            font-size: 40px;
+                            font-weight: bold;
+                            transition: 0.3s;
+                            cursor: pointer;
+                            z-index: 1001;
+                        }
+
+                        .lightbox-close:hover,
+                        .lightbox-close:focus {
+                            color: #bbb;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+
+                        /* Responsive */
+                        @media (max-width: 900px) {
+                            .masonry-grid {
+                                column-count: 2;
+                            }
+                        }
+
+                        @media (max-width: 600px) {
+                            .masonry-grid {
+                                column-count: 1;
+                            }
+                        }
+                    </style>
                 </div>
             </nav>
         </div>
