@@ -1,6 +1,9 @@
 ---
 import Header from "../components/Header.astro";
 import Sidebar from "../components/Sidebar.astro";
+
+import { Image } from 'astro:assets';
+import tractionForceImage from '../content/projects/traction-force-prediction-ml-project.png';
 ---
 
 <!doctype html>
@@ -24,12 +27,82 @@ import Sidebar from "../components/Sidebar.astro";
           </div>
           <div class="content-container">
             <h1 class="heading-red">Projects</h1>
-            <div
-              style="margin-top: 2rem; text-align: center; color: rgba(255, 255, 255, 0.7); font-size: 1.5rem;"
-            >
-              Coming soon!
-            </div>
+            <p class="lead">
+              Here is a collection of projects that I:
+              <br />
+              - am working on
+              <br />
+              - have worked on
+              <br />
+              - put on a hiatus for one reason or another.
+              <br />
+              <br />
+              For obvious reasons, I cannot show the work from my PhD projects that
+              are not published yet. (Praying to the second reviewers that I will
+              have a publication soon ╥﹏╥ )
+            </p>
+
+            <h2>Personal/Hobby projects</h2>
+            <h3>1. Homelab</h3>
+            <p class="lead">
+              As much as I like watching PewDiePie, I think I come off as a try
+              hard when I tell people about my homelab and then try to convince
+              them that I got into the hobby before <a
+                href="https://www.youtube.com/@PewDiePie"
+                style="color: aliceblue">he made it cool</a
+              >.
+              <br />
+              In any case, working on a homelab is such a rewarding hobby in my experience.
+              To read more about what I have been working on checkout my <a
+                href="/projects/homelab"
+                style="color: aliceblue">homelab page</a
+              >.
+              <div class="chips-container">
+                <div class="single-chip">Linux</div>
+                <div class="single-chip">Networking</div>
+                <div class="single-chip">Open source software</div>
+                <div class="single-chip">Docker</div>
+                <div class="single-chip">Hardware</div>
+              </div>
+            </p>
           </div>
+          <h3>2. Raspberry Pi Digital Photo Frame</h3>
+          <p class='lead'>Made this during the summer as a gift for my partner. I could've gotten a pre-built display but where's the fun in that? Plus, I like the idea of making something by hand as it makes the gift more meaningful.<br />
+          I got a display tiny 7.5 inch display, a Raspberry Pi, and 3D printed a frame (had to learn a little bit of 3D modelling for this which was fun). I wrote a simple Python script that pulls photos from a flash drive and displays them in a slideshow format. I also connected it to my tailnet so that I can access it remotely in case I need to troubleshoot.<br />
+          </p>
+          <h2>Course Projects</h2>
+          <h3>1. Machine learning Fall 2024: Traction force prediction from Fluorescent cell images</h3>
+          <p class='lead' style="margin-bottom: 0.1em;">
+            I chose this project for my machine learning course project to understand the state of development in the machine learning applications to biophysics. 
+            <br>
+            <br>
+            I had the following successful learning outcomes from this project:
+          </p>
+          <ol class="ol-lead">
+            <li>Understood the architecture of U-Net, one of the most successful neural net architecture in biomedical image segmentation (Ronneberger et al., 2015).</li>
+            <li>Studied the work of (Schmidt et al., 2022) who used U-Net to predict traction forces from fluorescent images of cells.
+              <ul>
+                <li>They create a dataset of fluorescent images of various proteins (zyxin, actin, paxillin, myosin) labels across multiple cells and corresponding measurement of traction forces using traction force microscopy.</li>
+                <li>This way, they were able to train a U-Net to predict traction forces (both magnitude and direction) from fluorescent images.</li>
+              </ul>
+            </li>
+            <li>To test the generalizability of the Schimidt et al. model and get hands-on experience of concepts I learned during the course, I applied their model to images unseen by the model. I didn't perform any retraining to update the weights since I don't have access to a novel dataset. I just used the images I found in these publications which use TFM and label zyxin and actin: Kliewe et. al. 2024, Kudrayashov et al., 2022)</li>
+            <li>One of the main things I found was that the binary mask threshold when marking the fluorescent parts of an image before feeding it to the model affects the output force prediction. For this project I set the threshold manually, by eyeballing the minimum required threshold to capture maximum information in a given image, but more rigourous analysis on this is required to be certain.</li>
+          </ol>
+          <p class="lead">
+            Here's an image showing images from Kliewe et. al. 2024, the corresponding binary masks for two different threshold values and the traction forces predicted by the model.
+          </p>
+          <figure class="project-figure">
+            <Image
+              class="project-figure-image"
+              src={tractionForceImage}
+              alt="Traction force prediction from fluorescent images of cells using U-Net model. Top row images are from Kliewe et. al. 2024. Middle row images are binary masks created using two different threshold values. Bottom row images are corresponding traction forces predicted by Schmidt et al. U-Net model."
+            />
+            <figcaption style="color: #a8a8a8; font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">
+            Traction force prediction from fluorescent images of cells using U-Net model. Top row images are from Kliewe et. al. 2024. Middle row images are binary masks created using two different threshold values. Bottom row images are corresponding traction forces predicted by Schmidt et al. U-Net model.
+            </figcaption>
+          </figure>
+
         </div>
       </nav>
     </div>

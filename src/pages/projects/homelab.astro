@@ -1,0 +1,40 @@
+---
+import Header from "../../components/Header.astro";
+import Sidebar from "../../components/Sidebar.astro";
+---
+
+<!doctype html>
+<html>
+    <Header title="Yashab Yadav" />
+    <body>
+        <div class="content">
+            <Sidebar selectedItem="projects" />
+            <nav class="main">
+                <div class="container">
+                    <div class="back-nav-container">
+                        <a href="/projects" class="back-nav-button w-inline-block">
+                            <img
+                                src="/assets/back.svg"
+                                loading="lazy"
+                                alt=""
+                                class="back-nav-img"
+                            />
+                            <div>Back</div>
+                        </a>
+                    </div>
+                    <main class="fold-content-container">
+                        <div class="fold-content">
+                            <h1 class="heading-red">
+                                You made it to my homelab page!
+                            </h1>
+                            <h2 style="margin-top: 4rem; color: aliceblue">
+                                Hang tight! I am working on this page.
+                            </h2>
+                        </div>
+                        <div class="comet-visual" aria-hidden="true"></div>
+                    </main>
+                </div>
+            </nav>
+        </div>
+    </body>
+</html>
