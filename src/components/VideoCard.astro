@@ -1,0 +1,105 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  poster?: string;
+}
+
+const { src, alt, caption, poster } = Astro.props;
+---
+
+<figure class="masonry-item video-item">
+  <div class="video-container">
+    <video 
+      src={src} 
+      class="video-player"
+      {...(poster ? { poster } : {})}
+      preload="metadata"
+    />
+    <div class="video-overlay">
+      <svg class="play-button" viewBox="0 0 24 24" fill="white">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </div>
+  </div>
+  <figcaption>
+    {caption}
+  </figcaption>
+</figure>
+
+<style>
+  .video-item {
+    break-inside: avoid;
+    margin: 8px;
+    margin-bottom: 0px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .video-player {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease;
+    pointer-events: none;
+  }
+
+  .video-item:hover .video-overlay {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .play-button {
+    width: 60px;
+    height: 60px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  }
+
+  .video-item:hover .play-button {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    padding: 2rem 1rem 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .video-item:hover figcaption {
+    opacity: 1;
+  }
+</style>

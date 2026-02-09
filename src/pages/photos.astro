@@ -3,9 +3,15 @@ import Header from "../components/Header.astro";
 import Sidebar from "../components/Sidebar.astro";
 
 import { Image } from "astro:assets";
+import VideoCard from "../components/VideoCard.astro";
 import home_desk_setup_2024_11_03_pic1 from "../content/photos_page/home-desk-setup-2024-11-03-pic-1.jpg";
 import home_desk_setup_2024_11_03_pic2 from "../content/photos_page/home-desk-setup-2024-11-03-pic-2.jpg";
 import home_desk_setup_2024_04_13 from "../content/photos_page/home-desk-setup-2024-04-13.jpg";
+import naruto_kalimba_cover from "../content/photos_page/naruto-kalimba-2022-06-22.mp4";
+
+import just_the_two_of_us_guitar_cover from "../content/photos_page/just-the-two-of-us-guitar-2023-11-27.mp4";
+
+import ascb_2025 from "../content/photos_page/ascb-2025-12-08.jpg";
 ---
 
 <!doctype html>
@@ -63,29 +69,58 @@ import home_desk_setup_2024_04_13 from "../content/photos_page/home-desk-setup-2
                                     Home Desk Setup - April 13, 2024
                                 </figcaption>
                             </figure>
+
+                            <VideoCard
+                                src={naruto_kalimba_cover}
+                                alt="Naruto - Kalimba Cover"
+                                caption="Naruto Theme - Kalimba Cover (June 22, 2022)"
+                            />
+                            <VideoCard
+                                src={just_the_two_of_us_guitar_cover}
+                                alt="Just The Two Of Us - Guitar Cover"
+                                caption="Just The Two Of Us - Guitar Cover (November 27, 2023)"
+                            />
+
+                            <figure class="masonry-item">
+                                <Image
+                                    src={ascb_2025}
+                                    alt="ASCB 2025 Conference"
+                                    class="photo-img"
+                                />
+                                <figcaption>
+                                    At ASCB 2025 Conference in Philadelphia - December 08, 2025
+                                </figcaption>
+                            </figure>
                         </div>
                     </div>
 
                     <div id="lightbox" class="lightbox hidden">
                         <span class="lightbox-close">&times;</span>
                         <div class="lightbox-content">
-                            <img id="lightbox-img" src="" alt="" />
+                            <img id="lightbox-img" src="" alt="" class="hidden" />
+                            <video id="lightbox-video" class="hidden" controls controlsList="nodownload"></video>
                             <div id="lightbox-caption" class="lightbox-caption">
                             </div>
                         </div>
                     </div>
+
 
                     <script>
                         const lightbox = document.getElementById("lightbox");
                         const lightboxImg = document.getElementById(
                             "lightbox-img",
                         ) as HTMLImageElement;
+                        const lightboxVideo = document.getElementById(
+                            "lightbox-video",
+                        ) as HTMLVideoElement;
                         const lightboxCaption =
                             document.getElementById("lightbox-caption");
                         const closeBtn =
                             document.querySelector(".lightbox-close");
                         const images =
                             document.querySelectorAll(".masonry-item img");
+                        const videos =
+                            document.querySelectorAll(".video-item video");
 
                         images.forEach((img) => {
                             img.addEventListener("click", (e) => {
@@ -98,8 +133,34 @@ import home_desk_setup_2024_04_13 from "../content/photos_page/home-desk-setup-2
                                     ?.querySelector("figcaption")
                                     ?.textContent?.trim();
 
+                                lightboxVideo.classList.add("hidden");
+                                lightboxImg.classList.remove("hidden");
+
                                 lightboxImg.src = src;
                                 lightboxImg.alt = alt;
+                                lightboxCaption.textContent =
+                                    caption || alt || "";
+
+                                lightbox.classList.remove("hidden");
+                                document.body.style.overflow = "hidden"; // Disable scroll
+                            });
+                        });
+
+                        videos.forEach((video) => {
+                            video.addEventListener("click", (e) => {
+                                e.stopPropagation();
+                                const src = video.getAttribute("src");
+                                const alt = video.getAttribute("alt");
+                                // Try to find figcaption in the parent figure
+                                const caption = video
+                                    .closest("figure")
+                                    ?.querySelector("figcaption")
+                                    ?.textContent?.trim();
+
+                                lightboxImg.classList.add("hidden");
+                                lightboxVideo.classList.remove("hidden");
+
+                                lightboxVideo.src = src;
                                 lightboxCaption.textContent =
                                     caption || alt || "";
 
@@ -112,6 +173,8 @@ import home_desk_setup_2024_04_13 from "../content/photos_page/home-desk-setup-2
                             lightbox.classList.add("hidden");
                             document.body.style.overflow = "";
                             lightboxImg.src = "";
+                            lightboxVideo.src = "";
+                            lightboxVideo.pause();
                         }
 
                         closeBtn.addEventListener("click", closeLightbox);
@@ -239,6 +302,17 @@ import home_desk_setup_2024_04_13 from "../content/photos_page/home-desk-setup-2
                             max-height: 85vh;
                             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
                             border-radius: 4px;
+                        }
+
+                        .lightbox-content video {
+                            max-width: 100%;
+                            max-height: 85vh;
+                            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+                            border-radius: 4px;
+                        }
+
+                        .lightbox-content .hidden {
+                            display: none;
                         }
 
                         .lightbox-caption {
