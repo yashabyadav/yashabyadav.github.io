@@ -15,6 +15,8 @@ I am using [Codefolio](https://github.com/danielunited/codefolio) theme for Astr
 
 - [ ] Maybe the projects page need a sidebar as it is getting pretty long with multiple headings as I add content to it.
 
+- [ ] Figure out a way to embed citation links with a system simiilar to bibtex
+
 ### Minor fixes:
 
 

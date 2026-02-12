@@ -101,6 +101,20 @@ const { selectedItem } = Astro.props;
         />
         <div>Photos</div>
       </a>
+      <a
+        href="/now"
+        class={`nav-link-container w-inline-block ${
+          selectedItem === 'now' ? 'w--current' : ''
+        }`}
+      >
+        <img
+          src="/assets/clock.svg"
+          loading="eager"
+          alt=""
+          class="nav-link-image"
+        />
+        <div>Now</div>
+      </a>
       
     </nav>
 
