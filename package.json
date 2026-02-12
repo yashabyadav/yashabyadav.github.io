@@ -8,10 +8,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "sync-notes": "node scripts/sync-obsidian.js"
+    "sync-notes": "node scripts/sync-obsidian.js",
+    "parse-media": "node scripts/parse-csv-media.js"
   },
   "dependencies": {
     "astro": "^5.1.5",
+    "dotenv": "^17.3.1",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0"
   }

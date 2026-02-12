@@ -115,6 +115,21 @@ const { selectedItem } = Astro.props;
         />
         <div>Now</div>
       </a>
+      <a
+        href="/media-diet"
+        class={`nav-link-container w-inline-block ${
+          selectedItem === 'media-diet' ? 'w--current' : ''
+        }`}
+      >
+        <img
+          src="/assets/tv.svg"
+          loading="eager"
+          alt=""
+          class="nav-link-image"
+        />
+        <div>Media Diet</div>
+      </a>
+ 
       
     </nav>
 
