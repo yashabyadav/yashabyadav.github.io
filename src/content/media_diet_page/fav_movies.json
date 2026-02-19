@@ -2,7 +2,7 @@
   {
     "title": "Oblivion",
     "reason": "Action, Adventure, Sci-Fi",
-    "posterUrl": "https://m.media-amazon.com/images/M/MV5BMTQwMDY0MTA4MF5BMl5BanBnXkFtZTcwNzI3MDgxOQ@@._V1_SX300.jpg",
+    "posterUrl": "/assets/posters/oblivion_tt1483013.jpg",
     "color": "",
     "imdbRating": "7.0",
     "yourRating": "10",
@@ -13,7 +13,7 @@
   {
     "title": "Superbad",
     "reason": "Comedy",
-    "posterUrl": "https://m.media-amazon.com/images/M/MV5BNjk0MzdlZGEtNTRkOC00ZDRiLWJkYjAtMzUzYTRiNzk1YTViXkEyXkFqcGc@._V1_SX300.jpg",
+    "posterUrl": "/assets/posters/superbad_tt0829482.jpg",
     "color": "",
     "imdbRating": "7.6",
     "yourRating": "9",
@@ -24,7 +24,7 @@
   {
     "title": "Non-Stop",
     "reason": "Action, Mystery, Thriller",
-    "posterUrl": "https://m.media-amazon.com/images/M/MV5BOTI3NzcxMjkzMl5BMl5BanBnXkFtZTgwMDY0NTQ0MDE@._V1_SX300.jpg",
+    "posterUrl": "/assets/posters/non_stop_tt2024469.jpg",
     "color": "",
     "imdbRating": "6.9",
     "yourRating": "",
@@ -35,7 +35,7 @@
   {
     "title": "Edge of Tomorrow",
     "reason": "Action, Adventure, Sci-Fi",
-    "posterUrl": "https://m.media-amazon.com/images/M/MV5BMTc5OTk4MTM3M15BMl5BanBnXkFtZTgwODcxNjg3MDE@._V1_SX300.jpg",
+    "posterUrl": "/assets/posters/edge_of_tomorrow_tt1631867.jpg",
     "color": "",
     "imdbRating": "7.9",
     "yourRating": "8",
@@ -46,7 +46,7 @@
   {
     "title": "Fight Club",
     "reason": "Crime, Drama, Thriller",
-    "posterUrl": "https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3Ny00MjU3LTg2YWEtNmEyYjBiMjI1Y2M5XkEyXkFqcGc@._V1_SX300.jpg",
+    "posterUrl": "/assets/posters/fight_club_tt0137523.jpg",
     "color": "",
     "imdbRating": "8.8",
     "yourRating": "10",
@@ -57,12 +57,133 @@
   {
     "title": "Interstellar",
     "reason": "Adventure, Drama, Sci-Fi",
-    "posterUrl": "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_SX300.jpg",
+    "posterUrl": "/assets/posters/interstellar_tt0816692.jpg",
     "color": "",
     "imdbRating": "8.7",
     "yourRating": "10",
     "year": "2014",
     "url": "https://www.imdb.com/title/tt0816692/",
     "imdbId": "tt0816692"
+  },
+  {
+    "title": "Superman",
+    "reason": "Action, Adventure, Sci-Fi",
+    "posterUrl": "/assets/posters/superman_tt5950044.jpg",
+    "color": "",
+    "imdbRating": "7.0",
+    "yourRating": "",
+    "year": "2025",
+    "url": "https://www.imdb.com/title/tt5950044/",
+    "imdbId": "tt5950044"
+  },
+  {
+    "title": "Star Trek",
+    "reason": "Action, Adventure, Sci-Fi",
+    "posterUrl": "/assets/posters/star_trek_tt0796366.jpg",
+    "color": "",
+    "imdbRating": "7.9",
+    "yourRating": "",
+    "year": "2009",
+    "url": "https://www.imdb.com/title/tt0796366/",
+    "imdbId": "tt0796366"
+  },
+  {
+    "title": "Andhadhun",
+    "reason": "Crime, Mystery, Thriller",
+    "posterUrl": "/assets/posters/andhadhun_tt8108198.jpg",
+    "color": "",
+    "imdbRating": "8.2",
+    "yourRating": "9",
+    "year": "2018",
+    "url": "https://www.imdb.com/title/tt8108198/",
+    "imdbId": "tt8108198"
+  },
+  {
+    "title": "Bhavesh Joshi Superhero",
+    "reason": "Action, Drama",
+    "posterUrl": "/assets/posters/bhavesh_joshi_superhero_tt6129302.jpg",
+    "color": "",
+    "imdbRating": "7.6",
+    "yourRating": "",
+    "year": "2018",
+    "url": "https://www.imdb.com/title/tt6129302/",
+    "imdbId": "tt6129302"
+  },
+  {
+    "title": "Warm Bodies",
+    "reason": "Action, Comedy, Horror, Romance, Sci-Fi, Thriller",
+    "posterUrl": "/assets/posters/warm_bodies_tt1588173.jpg",
+    "color": "",
+    "imdbRating": "6.8",
+    "yourRating": "",
+    "year": "2013",
+    "url": "https://www.imdb.com/title/tt1588173/",
+    "imdbId": "tt1588173"
+  },
+  {
+    "title": "Justice League: The Flashpoint Paradox",
+    "reason": "Animation, Action, Adventure, Fantasy, Sci-Fi",
+    "posterUrl": "/assets/posters/justice_league_the_flashpoint_paradox_tt2820466.jpg",
+    "color": "",
+    "imdbRating": "8.1",
+    "yourRating": "8",
+    "year": "2013",
+    "url": "https://www.imdb.com/title/tt2820466/",
+    "imdbId": "tt2820466"
+  },
+  {
+    "title": "Spider-Man: Into the Spider-Verse",
+    "reason": "Animation, Action, Adventure, Family, Fantasy, Sci-Fi",
+    "posterUrl": "/assets/posters/spider_man_into_the_spider_verse_tt4633694.jpg",
+    "color": "",
+    "imdbRating": "8.4",
+    "yourRating": "",
+    "year": "2018",
+    "url": "https://www.imdb.com/title/tt4633694/",
+    "imdbId": "tt4633694"
+  },
+  {
+    "title": "Spider-Man: Across the Spider-Verse",
+    "reason": "Animation, Action, Adventure, Family, Fantasy, Sci-Fi",
+    "posterUrl": "/assets/posters/spider_man_across_the_spider_verse_tt9362722.jpg",
+    "color": "",
+    "imdbRating": "8.5",
+    "yourRating": "10",
+    "year": "2023",
+    "url": "https://www.imdb.com/title/tt9362722/",
+    "imdbId": "tt9362722"
+  },
+  {
+    "title": "Real Steel",
+    "reason": "Action, Drama, Sci-Fi, Sport",
+    "posterUrl": "/assets/posters/real_steel_tt0433035.jpg",
+    "color": "",
+    "imdbRating": "7.1",
+    "yourRating": "",
+    "year": "2011",
+    "url": "https://www.imdb.com/title/tt0433035/",
+    "imdbId": "tt0433035"
+  },
+  {
+    "title": "Tumbbad",
+    "reason": "Drama, Fantasy, Horror, Thriller",
+    "posterUrl": "/assets/posters/tumbbad_tt8239946.jpg",
+    "color": "",
+    "imdbRating": "8.2",
+    "yourRating": "",
+    "year": "2018",
+    "url": "https://www.imdb.com/title/tt8239946/",
+    "imdbId": "tt8239946"
+  },
+  {
+    "title": "Schindler's List",
+    "reason": "Biography, Drama, History",
+    "posterUrl": "/assets/posters/schindler_s_list_tt0108052.jpg",
+    "color": "",
+    "imdbRating": "9.0",
+    "yourRating": "8",
+    "year": "1993",
+    "url": "https://www.imdb.com/title/tt0108052/",
+    "imdbId": "tt0108052"
   }
 ]

@@ -4,6 +4,42 @@ import Sidebar from "../components/Sidebar.astro";
 
 import { Image } from 'astro:assets';
 import tractionForceImage from '../content/projects/traction-force-prediction-ml-project.png';
+
+const personalProjects = [
+  {
+    id: "homelab",
+    title: "Homelab",
+    shortDescription: "Self-hosted infrastructure for learning and experimentation",
+    fullDescription: `As much as I like watching PewDiePie, I think I come off as a try hard when I tell people about my homelab and then try to convince them that I got into the hobby before <a href="https://www.youtube.com/@PewDiePie" style="color: aliceblue">he made it cool</a>.<br/><br/>In any case, working on a homelab is such a rewarding hobby in my experience. To read more about what I have been working on checkout my <a href="/projects/homelab" style="color: aliceblue">homelab page</a>.`,
+    tags: ["Linux", "Networking", "Open source software", "Docker", "Hardware"]
+  },
+  {
+    id: "photo-frame",
+    title: "Raspberry Pi Digital Photo Frame",
+    shortDescription: "Custom 3D-printed digital photo frame with remote access",
+    fullDescription: `Made this during the summer as a gift for my partner. I could've gotten a pre-built display but where's the fun in that? Plus, I like the idea of making something by hand as it makes the gift more meaningful.<br/><br/>I got a display tiny 7.5 inch display, a Raspberry Pi, and 3D printed a frame (had to learn a little bit of 3D modelling for this which was fun). I wrote a simple Python script that pulls photos from a flash drive and displays them in a slideshow format. I also connected it to my tailnet so that I can access it remotely in case I need to troubleshoot.`,
+    tags: ["Linux", "Python", "Open source software", "Hardware"]
+  }
+];
+
+const courseProjects = [
+  {
+    id: "traction-force",
+    title: "Traction Force Prediction from Fluorescent Cell Images",
+    subtitle: "Machine Learning (Fall 2024)",
+    shortDescription: "U-Net model for predicting cellular traction forces from fluorescence microscopy",
+    fullDescription: `I chose this project for my machine learning course project to understand the state of development in the machine learning applications to biophysics.<br/><br/>I had the following successful learning outcomes from this project:<ol class="ol-lead"><li>Understood the architecture of U-Net, one of the most successful neural net architecture in biomedical image segmentation (Ronneberger et al., 2015).</li><li>Studied the work of (Schmidt et al., 2022) who used U-Net to predict traction forces from fluorescent images of cells.<ul><li>They create a dataset of fluorescent images of various proteins (zyxin, actin, paxillin, myosin) labels across multiple cells and corresponding measurement of traction forces using traction force microscopy.</li><li>This way, they were able to train a U-Net to predict traction forces (both magnitude and direction) from fluorescent images.</li></ul></li><li>To test the generalizability of the Schimidt et al. model and get hands-on experience of concepts I learned during the course, I applied their model to images unseen by the model. I didn't perform any retraining to update the weights since I don't have access to a novel dataset. I just used the images I found in these publications which use TFM and label zyxin and actin: Kliewe et. al. 2024, Kudrayashov et al., 2022)</li><li>One of the main things I found was that the binary mask threshold when marking the fluorescent parts of an image before feeding it to the model affects the output force prediction. For this project I set the threshold manually, by eyeballing the minimum required threshold to capture maximum information in a given image, but more rigourous analysis on this is required to be certain.</li></ol><p class="lead">Here's an image showing images from Kliewe et. al. 2024, the corresponding binary masks for two different threshold values and the traction forces predicted by the model.</p><figure class="project-figure"><img class="project-figure-image" src="${tractionForceImage.src}" alt="Traction force prediction"/><figcaption style="color: #a8a8a8; font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">Traction force prediction from fluorescent images of cells using U-Net model. Top row images are from Kliewe et. al. 2024. Middle row images are binary masks created using two different threshold values. Bottom row images are corresponding traction forces predicted by Schmidt et al. U-Net model.</figcaption></figure><p class="lead">While I don't have ground truth traction force data for these images to quantitatively assess the performance of the model, I am happy to get some kind of prediction that is not garbage. This shows that the model has some generalizability to unseen data, at least qualitatively.</p>`,
+    tags: ["Cytoskeleton dynamics", "Biophysics", "Machine learning", "Python", "Image analysis"]
+  },
+  {
+    id: "soft-body",
+    title: "Soft Body Simulation",
+    subtitle: "Introduction to Computational Physics (Spring 2025)",
+    shortDescription: "2D mass-spring lattice simulator with collision detection and energy analysis",
+    fullDescription: `I developed a 2D soft‑body simulator for the course to get hands‑on experience with building physically motivated models and testing numerical integration strategies. The project focuses on a mass–spring lattice representation of deformable bodies, implementing basic constraints and collision responses, and producing interactive visualisations to inspect deformation and energy behaviour.<ol class="ol-lead"><li>Derived and implemented the equations of motion for a mass–spring lattice and assembled force contributions from structural, shear, and bending springs.</li><li>Explored time integration schemes and their tradeoffs:<ul><li>Explicit methods (e.g., Verlet / forward Euler) for simplicity and performance.</li><li>Implicit integration (Backward Euler) to improve stability for stiff systems.</li></ul></li><li>Added constraints and collision handling:<ul><li>Fixed anchors and positional constraints to simulate attachments and boundary conditions.</li><li>Simple collision detection and penalty‑based responses against static obstacles and a ground plane.</li></ul></li><li>Studied numerical energy behaviour and damping strategies to avoid numerical blowup while retaining plausible dynamics.</li><li>Built interactive visualisations and example scenes to inspect deformation, stress patterns, and to record simulation runs for analysis.</li></ol><p class="lead">The repository includes the simulator code, example scenes, and a README with instructions to build and run the demos. I used this project to understand how algorithmic choices—integration, constraint handling, and damping—affect stability and visual realism in physics simulations.</p>`,
+    tags: ["Mass–spring systems", "Numerical methods", "Energy & stability", "Visualization", "Simulation"]
+  }
+];
 ---
 
 <!doctype html>
@@ -14,123 +50,326 @@ import tractionForceImage from '../content/projects/traction-force-prediction-ml
       <Sidebar selectedItem="projects" />
       <nav class="main">
         <div class="container">
-          <div class="back-nav-container">
-            <a href="/" class="back-nav-button w-inline-block">
-              <img
-                src="/assets/back.svg"
-                loading="lazy"
-                alt=""
-                class="back-nav-img"
-              />
-              <div>Back</div>
-            </a>
-          </div>
-          <div class="content-container">
-            <h1 class="heading-red">Projects</h1>
-            <p class="lead">
-              Here is a collection of projects that I:
-              <br />
-              - am working on
-              <br />
-              - have worked on
-              <br />
-              - put on a hiatus for one reason or another.
-              <br />
-              <br />
-              For obvious reasons, I cannot show the work from my PhD projects that
-              are not published yet (Hoping I will have one soonsoon ╥﹏╥ )
-            </p>
+          <main class="fold-content-container">
+            <div class="fold-content">
+              <h1 class="heading-red">Projects</h1>
+              <p class="lead">
+                Here is a collection of projects that I:
+                <br />
+                - am working on
+                <br />
+                - have worked on
+                <br />
+                - put on a hiatus for one reason or another.
+                <br />
+                <br />
+                For obvious reasons, I cannot show the work from my PhD projects that
+                are not published yet (Hoping I will have one soonsoon ╥﹏╥ )
+              </p>
+            </div>
 
-            <hr>
-
-            <h2>Personal/Hobby projects</h2>
-            <h3>1. Homelab</h3>
-            <p class="lead">
-              As much as I like watching PewDiePie, I think I come off as a try
-              hard when I tell people about my homelab and then try to convince
-              them that I got into the hobby before <a
-                href="https://www.youtube.com/@PewDiePie"
-                style="color: aliceblue">he made it cool</a
-              >.
-              <br />
-              In any case, working on a homelab is such a rewarding hobby in my experience.
-              To read more about what I have been working on checkout my <a
-                href="/projects/homelab"
-                style="color: aliceblue">homelab page</a
-              >.
-              <div class="chips-container">
-                <div class="single-chip">Linux</div>
-                <div class="single-chip">Networking</div>
-                <div class="single-chip">Open source software</div>
-                <div class="single-chip">Docker</div>
-                <div class="single-chip">Hardware</div>
+            <!-- Personal/Hobby Projects Section -->
+            <div class="project-section">
+              <h2 class="heading-red" style="margin-top: 2rem; margin-bottom: 1.5rem;">Personal/Hobby Projects</h2>
+              <div class="bento-grid">
+                {personalProjects.map((project) => (
+                  <div class="bento-card" data-project-id={project.id}>
+                    <div class="card-header">
+                      <h3 class="project-card-title">{project.title}</h3>
+                      {project.subtitle && <div class="project-subtitle">{project.subtitle}</div>}
+                    </div>
+                    <div class="card-content">
+                      <p class="project-short-description">{project.shortDescription}</p>
+                      <div class="project-full-description" style="display: none;">
+                        <Fragment set:html={project.fullDescription} />
+                      </div>
+                      <div class="chips-container">
+                        {project.tags.map((tag) => (
+                          <div class="single-chip">{tag}</div>
+                        ))}
+                      </div>
+                    </div>
+                    <div class="expand-indicator">
+                      <span class="expand-text">Click to expand</span>
+                      <span class="collapse-text" style="display: none;">Click to collapse</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </p>
-          </div>
+            </div>
 
-          <hr>
-
-          <h3>2. Raspberry Pi Digital Photo Frame</h3>
-          <p class='lead'>Made this during the summer as a gift for my partner. I could've gotten a pre-built display but where's the fun in that? Plus, I like the idea of making something by hand as it makes the gift more meaningful.<br />
-          I got a display tiny 7.5 inch display, a Raspberry Pi, and 3D printed a frame (had to learn a little bit of 3D modelling for this which was fun). I wrote a simple Python script that pulls photos from a flash drive and displays them in a slideshow format. I also connected it to my tailnet so that I can access it remotely in case I need to troubleshoot.<br />
-              <div class="chips-container">
-                <div class="single-chip">Linux</div>
-                <div class="single-chip">Python</div>
-                <div class="single-chip">Open source software</div>
-                <div class="single-chip">Hardware</div>
+            <!-- Course Projects Section -->
+            <div class="project-section">
+              <h2 class="heading-red" style="margin-top: 3rem; margin-bottom: 1.5rem;">Course Projects</h2>
+              <div class="bento-grid">
+                {courseProjects.map((project) => (
+                  <div class="bento-card" data-project-id={project.id}>
+                    <div class="card-header">
+                      <h3 class="project-card-title">{project.title}</h3>
+                      {project.subtitle && <div class="project-subtitle">{project.subtitle}</div>}
+                    </div>
+                    <div class="card-content">
+                      <p class="project-short-description">{project.shortDescription}</p>
+                      <div class="project-full-description" style="display: none;">
+                        <Fragment set:html={project.fullDescription} />
+                      </div>
+                      <div class="chips-container">
+                        {project.tags.map((tag) => (
+                          <div class="single-chip">{tag}</div>
+                        ))}
+                      </div>
+                    </div>
+                    <div class="expand-indicator">
+                      <span class="expand-text">Click to expand</span>
+                      <span class="collapse-text" style="display: none;">Click to collapse</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-          </p>
-          <hr>
-          <h2>Course Projects</h2>
-          <h3>1. Traction force prediction from Fluorescent cell images: Machine learning (Fall 2024)</h3>
-          <p class='lead' style="margin-bottom: 0.1em;">
-            I chose this project for my machine learning course project to understand the state of development in the machine learning applications to biophysics. 
-            <br>
-            <br>
-            I had the following successful learning outcomes from this project:
-          </p>
-          <ol class="ol-lead">
-            <li>Understood the architecture of U-Net, one of the most successful neural net architecture in biomedical image segmentation (Ronneberger et al., 2015).</li>
-            <li>Studied the work of (Schmidt et al., 2022) who used U-Net to predict traction forces from fluorescent images of cells.
-              <ul>
-                <li>They create a dataset of fluorescent images of various proteins (zyxin, actin, paxillin, myosin) labels across multiple cells and corresponding measurement of traction forces using traction force microscopy.</li>
-                <li>This way, they were able to train a U-Net to predict traction forces (both magnitude and direction) from fluorescent images.</li>
-              </ul>
-            </li>
-            <li>To test the generalizability of the Schimidt et al. model and get hands-on experience of concepts I learned during the course, I applied their model to images unseen by the model. I didn't perform any retraining to update the weights since I don't have access to a novel dataset. I just used the images I found in these publications which use TFM and label zyxin and actin: Kliewe et. al. 2024, Kudrayashov et al., 2022)</li>
-            <li>One of the main things I found was that the binary mask threshold when marking the fluorescent parts of an image before feeding it to the model affects the output force prediction. For this project I set the threshold manually, by eyeballing the minimum required threshold to capture maximum information in a given image, but more rigourous analysis on this is required to be certain.</li>
-          </ol>
-          <p class="lead">
-            Here's an image showing images from Kliewe et. al. 2024, the corresponding binary masks for two different threshold values and the traction forces predicted by the model.
-          </p>
-          <figure class="project-figure">
-            <Image
-              class="project-figure-image"
-              src={tractionForceImage}
-              alt="Traction force prediction from fluorescent images of cells using U-Net model. Top row images are from Kliewe et. al. 2024. Middle row images are binary masks created using two different threshold values. Bottom row images are corresponding traction forces predicted by Schmidt et al. U-Net model."
-            />
-            <figcaption style="color: #a8a8a8; font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">
-            Traction force prediction from fluorescent images of cells using U-Net model. Top row images are from Kliewe et. al. 2024. Middle row images are binary masks created using two different threshold values. Bottom row images are corresponding traction forces predicted by Schmidt et al. U-Net model.
-            </figcaption>
-          </figure>
-          <p class="lead">
-            While I don't have ground truth traction force data for these images to quantitatively assess the performance of the model, I am happy to get some kind of prediction that is not garbage. This shows that the model has some generalizability to unseen data, at least qualitatively.
+            </div>
 
-
-              <div class="chips-container">
-                <div class="single-chip">Cytoskeleton dynamics</div>
-                <div class="single-chip">Biophysics</div>
-                <div class="single-chip">Machine learning</div>
-                <div class="single-chip">Python</div>
-                <div class="single-chip">Image analysis</div>
-              </div>
-          </p>
-          <hr>
-          <h3>2. Soft body simulation: Introduction to computational physics (Spring 2025)</h3>
-
+            <!-- Footer Note -->
+            <div class="fold-content" style="margin-top: 3rem; border-top: 1px solid #353535; padding-top: 2rem;">
+              <p class="lead" style="font-size: 14px; color: #a8a8a8;">
+                Last updated: February 2026. This page showcases ongoing and completed projects.
+              </p>
+            </div>
+          </main>
         </div>
       </nav>
     </div>
+
+    <style>
+      /* Bento Grid Container */
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 24px;
+        margin: 2rem 0;
+        width: 100%;
+      }
+
+      /* Bento Cards */
+      .bento-card {
+        background-color: rgba(53, 53, 53, 0.12);
+        border: 1px solid #353535;
+        border-radius: 12px;
+        padding: 24px;
+        backdrop-filter: blur(4px);
+        transition: all 200ms ease;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .bento-card:hover {
+        border-color: #803329;
+        background-color: rgba(53, 53, 53, 0.18);
+        box-shadow: 0 8px 24px rgba(128, 51, 41, 0.12);
+      }
+
+      .bento-card.expanded {
+        grid-column: 1 / -1;
+        background-color: rgba(53, 53, 53, 0.22);
+      }
+
+      /* Card Header */
+      .card-header {
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #353535;
+        padding-bottom: 1rem;
+      }
+
+      .project-card-title {
+        margin: 0;
+        font-size: 1.3rem;
+        color: #803329;
+        line-height: 1.3;
+      }
+
+      .project-subtitle {
+        color: #a8a8a8;
+        font-size: 0.9rem;
+        font-family: IBM Plex Mono, sans-serif;
+        margin-top: 0.5rem;
+        letter-spacing: 0.5px;
+      }
+
+      /* Card Content */
+      .card-content {
+        flex: 1;
+      }
+
+      .project-short-description {
+        color: #D4D4CA;
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+
+      .project-full-description {
+        color: #c0c0c0;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .project-full-description :global(.lead) {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .project-full-description :global(.ol-lead) {
+        margin-left: 1.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .project-full-description :global(.ol-lead li) {
+        margin-bottom: 0.8rem;
+        line-height: 1.5;
+      }
+
+      .project-full-description :global(.project-figure) {
+        margin: 1.5rem 0;
+      }
+
+      .project-full-description :global(.project-figure-image) {
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid #353535;
+      }
+
+      /* Tags/Chips */
+      .chips-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 1rem;
+      }
+
+      .single-chip {
+        background-color: rgba(128, 51, 41, 0.2);
+        border: 1px solid #803329;
+        color: #D4D4CA;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-family: IBM Plex Mono, sans-serif;
+        letter-spacing: 0.3px;
+      }
+
+      /* Expand Indicator */
+      .expand-indicator {
+        text-align: center;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #353535;
+        color: #803329;
+        font-size: 13px;
+        font-family: IBM Plex Mono, sans-serif;
+        letter-spacing: 0.5px;
+      }
+
+      /* Project Section */
+      .project-section {
+        margin-bottom: 2rem;
+      }
+
+      /* Responsive Design */
+      @media screen and (max-width: 991px) {
+        .bento-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+      }
+
+      @media screen and (max-width: 767px) {
+        .bento-grid {
+          gap: 16px;
+        }
+
+        .bento-card {
+          padding: 18px;
+          border-radius: 8px;
+        }
+
+        .card-header {
+          margin-bottom: 0.8rem;
+          padding-bottom: 0.8rem;
+        }
+
+        .project-card-title {
+          font-size: 1.1rem;
+        }
+
+        .project-short-description {
+          font-size: 14px;
+        }
+
+        .project-full-description {
+          font-size: 13px;
+        }
+
+        .single-chip {
+          font-size: 11px;
+          padding: 5px 10px;
+        }
+      }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.bento-card');
+        
+        cards.forEach(card => {
+          card.addEventListener('click', () => {
+            const shortDesc = card.querySelector('.project-short-description');
+            const fullDesc = card.querySelector('.project-full-description');
+            const expandText = card.querySelector('.expand-text');
+            const collapseText = card.querySelector('.collapse-text');
+            const isExpanded = card.classList.contains('expanded');
+            
+            // Close all other expanded cards
+            cards.forEach(otherCard => {
+              if (otherCard !== card && otherCard.classList.contains('expanded')) {
+                otherCard.classList.remove('expanded');
+                const otherShort = otherCard.querySelector('.project-short-description');
+                const otherFull = otherCard.querySelector('.project-full-description');
+                const otherExpand = otherCard.querySelector('.expand-text');
+                const otherCollapse = otherCard.querySelector('.collapse-text');
+                
+                otherShort.style.display = 'block';
+                otherFull.style.display = 'none';
+                otherExpand.style.display = 'inline';
+                otherCollapse.style.display = 'none';
+              }
+            });
+            
+            // Toggle current card
+            if (isExpanded) {
+              card.classList.remove('expanded');
+              shortDesc.style.display = 'block';
+              fullDesc.style.display = 'none';
+              expandText.style.display = 'inline';
+              collapseText.style.display = 'none';
+            } else {
+              card.classList.add('expanded');
+              shortDesc.style.display = 'none';
+              fullDesc.style.display = 'block';
+              expandText.style.display = 'none';
+              collapseText.style.display = 'inline';
+              
+              // Smooth scroll to the card
+              setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              }, 100);
+            }
+          });
+        });
+      });
+    </script>
 
     <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
   </body>

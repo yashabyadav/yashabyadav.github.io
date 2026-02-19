@@ -159,6 +159,71 @@ async function parseMediaCSV() {
     console.log('✗ fav_movies.csv not found');
   }
 
+  // Process fav_tv_shows.csv
+  const tvShowFile = path.join(inputDir, 'fav_tv_shows.csv');
+  if (fs.existsSync(tvShowFile)) {
+    const csvText = fs.readFileSync(tvShowFile, 'utf-8');
+    const rawData = parseCSV(csvText);
+    let transformedData = transformMovieData(rawData, apiKey);
+
+    // Fetch posters if API key is available
+    if (apiKey) {
+      console.log('Fetching posters from OMDB API...');
+      for (let i = 0; i < transformedData.length; i++) {
+        const item = transformedData[i];
+        if (item.imdbId) {
+          const poster = await fetchOmdbPoster(item.imdbId, apiKey);
+          if (poster) {
+            transformedData[i].posterUrl = poster;
+            console.log(`  ✓ ${item.title}`);
+          } else {
+            console.log(`  ✗ ${item.title} (no poster found)`);
+          }
+          // Rate limit to avoid API throttling
+          await new Promise(resolve => setTimeout(resolve, 200));
+        }
+      }
+    }
+  const outputFileTv = path.join(outputDir, 'fav_tv_shows.json');
+    fs.writeFileSync(outputFileTv, JSON.stringify(transformedData, null, 2));
+    console.log(`\n✓ Parsed fav_tv_shows.csv → fav_tv_shows.json (${transformedData.length} shows)`);
+  } else {
+    console.log('✗ fav_tv_shows.csv not found');
+  }
+  // Process fav_video_games.csv
+  const videoGameFile = path.join(inputDir, 'fav_video_games.csv');
+  if (fs.existsSync(videoGameFile)) {
+    const csvText = fs.readFileSync(videoGameFile, 'utf-8');
+    const rawData = parseCSV(csvText);
+    let transformedData = transformMovieData(rawData, apiKey);
+
+    // Fetch posters if API key is available
+    if (apiKey) {
+      console.log('Fetching posters from OMDB API...');
+      for (let i = 0; i < transformedData.length; i++) {
+        const item = transformedData[i];
+        if (item.imdbId) {
+          const poster = await fetchOmdbPoster(item.imdbId, apiKey);
+          if (poster) {
+            transformedData[i].posterUrl = poster;
+            console.log(`  ✓ ${item.title}`);
+          } else {
+            console.log(`  ✗ ${item.title} (no poster found)`);
+          }
+          // Rate limit to avoid API throttling
+          await new Promise(resolve => setTimeout(resolve, 200));
+        }
+      }
+    }
+  const outputFileVideoGames = path.join(outputDir, 'fav_video_games.json');
+    fs.writeFileSync(outputFileVideoGames, JSON.stringify(transformedData, null, 2));
+    console.log(`\n✓ Parsed fav_video_games.csv → fav_video_games.json (${transformedData.length} games)`);
+  } else {
+    console.log('✗ fav_video_games.csv not found');
+  }
+ 
+  
+
   // Add more media types as needed (TV shows, games, books)
   console.log('\nTo add more media types, create:');
   console.log('  - src/content/media_diet_page/fav_tv_shows.csv');

@@ -1,1 +1,200 @@
-[]
+[
+  {
+    "title": "Mr. Robot",
+    "reason": "Crime, Drama, Thriller",
+    "posterUrl": "/assets/posters/mr_robot_tt4158110.jpg",
+    "color": "",
+    "imdbRating": "8.5",
+    "yourRating": "9",
+    "year": "2015",
+    "url": "https://www.imdb.com/title/tt4158110/",
+    "imdbId": "tt4158110"
+  },
+  {
+    "title": "Daredevil",
+    "reason": "Action, Crime, Drama, Sci-Fi, Thriller",
+    "posterUrl": "/assets/posters/daredevil_tt3322312.jpg",
+    "color": "",
+    "imdbRating": "8.6",
+    "yourRating": "10",
+    "year": "2015",
+    "url": "https://www.imdb.com/title/tt3322312/",
+    "imdbId": "tt3322312"
+  },
+  {
+    "title": "Arcane",
+    "reason": "Animation, Action, Adventure, Drama, Fantasy, Sci-Fi",
+    "posterUrl": "/assets/posters/arcane_tt11126994.jpg",
+    "color": "",
+    "imdbRating": "9.0",
+    "yourRating": "8",
+    "year": "2021",
+    "url": "https://www.imdb.com/title/tt11126994/",
+    "imdbId": "tt11126994"
+  },
+  {
+    "title": "Vinland Saga",
+    "reason": "Animation, Action, Adventure, Drama, History",
+    "posterUrl": "/assets/posters/vinland_saga_tt10233448.jpg",
+    "color": "",
+    "imdbRating": "8.8",
+    "yourRating": "10",
+    "year": "2019",
+    "url": "https://www.imdb.com/title/tt10233448/",
+    "imdbId": "tt10233448"
+  },
+  {
+    "title": "Castlevania",
+    "reason": "Animation, Action, Adventure, Drama, Fantasy, Horror",
+    "posterUrl": "/assets/posters/castlevania_tt6517102.jpg",
+    "color": "",
+    "imdbRating": "8.3",
+    "yourRating": "7",
+    "year": "2017",
+    "url": "https://www.imdb.com/title/tt6517102/",
+    "imdbId": "tt6517102"
+  },
+  {
+    "title": "Attack on Titan",
+    "reason": "Animation, Action, Adventure, Drama, Fantasy, Horror",
+    "posterUrl": "/assets/posters/attack_on_titan_tt2560140.jpg",
+    "color": "",
+    "imdbRating": "9.1",
+    "yourRating": "10",
+    "year": "2013",
+    "url": "https://www.imdb.com/title/tt2560140/",
+    "imdbId": "tt2560140"
+  },
+  {
+    "title": "Dr. Stone",
+    "reason": "Animation, Action, Adventure, Sci-Fi",
+    "posterUrl": "/assets/posters/dr_stone_tt9679542.jpg",
+    "color": "",
+    "imdbRating": "8.1",
+    "yourRating": "10",
+    "year": "2019",
+    "url": "https://www.imdb.com/title/tt9679542/",
+    "imdbId": "tt9679542"
+  },
+  {
+    "title": "Steins;Gate",
+    "reason": "Animation, Comedy, Drama, Mystery, Romance, Sci-Fi, Thriller",
+    "posterUrl": "/assets/posters/steins_gate_tt1910272.jpg",
+    "color": "",
+    "imdbRating": "8.8",
+    "yourRating": "10",
+    "year": "2011",
+    "url": "https://www.imdb.com/title/tt1910272/",
+    "imdbId": "tt1910272"
+  },
+  {
+    "title": "Fullmetal Alchemist: Brotherhood",
+    "reason": "Animation, Action, Adventure, Comedy, Drama, Fantasy, Sci-Fi",
+    "posterUrl": "/assets/posters/fullmetal_alchemist_brotherhood_tt1355642.jpg",
+    "color": "",
+    "imdbRating": "9.1",
+    "yourRating": "9",
+    "year": "2009",
+    "url": "https://www.imdb.com/title/tt1355642/",
+    "imdbId": "tt1355642"
+  },
+  {
+    "title": "Parasyte: The Maxim",
+    "reason": "Animation, Action, Drama, Horror, Sci-Fi, Thriller",
+    "posterUrl": "/assets/posters/parasyte_the_maxim_tt3358020.jpg",
+    "color": "",
+    "imdbRating": "8.2",
+    "yourRating": "9",
+    "year": "2014",
+    "url": "https://www.imdb.com/title/tt3358020/",
+    "imdbId": "tt3358020"
+  },
+  {
+    "title": "Dark",
+    "reason": "Crime, Drama, Mystery, Sci-Fi, Thriller",
+    "posterUrl": "/assets/posters/dark_tt5753856.jpg",
+    "color": "",
+    "imdbRating": "8.7",
+    "yourRating": "10",
+    "year": "2017",
+    "url": "https://www.imdb.com/title/tt5753856/",
+    "imdbId": "tt5753856"
+  },
+  {
+    "title": "Chernobyl",
+    "reason": "Drama, History, Thriller",
+    "posterUrl": "/assets/posters/chernobyl_tt7366338.jpg",
+    "color": "",
+    "imdbRating": "9.3",
+    "yourRating": "9",
+    "year": "2019",
+    "url": "https://www.imdb.com/title/tt7366338/",
+    "imdbId": "tt7366338"
+  },
+  {
+    "title": "Erased",
+    "reason": "Animation, Crime, Drama, Fantasy, Mystery, Sci-Fi, Thriller",
+    "posterUrl": "/assets/posters/erased_tt5249462.jpg",
+    "color": "",
+    "imdbRating": "8.4",
+    "yourRating": "10",
+    "year": "2016",
+    "url": "https://www.imdb.com/title/tt5249462/",
+    "imdbId": "tt5249462"
+  },
+  {
+    "title": "Avatar: The Last Airbender",
+    "reason": "Animation, Action, Adventure, Family, Fantasy, Mystery",
+    "posterUrl": "/assets/posters/avatar_the_last_airbender_tt0417299.jpg",
+    "color": "",
+    "imdbRating": "9.3",
+    "yourRating": "10",
+    "year": "2005",
+    "url": "https://www.imdb.com/title/tt0417299/",
+    "imdbId": "tt0417299"
+  },
+  {
+    "title": "Code Geass",
+    "reason": "Animation, Action, Drama, Fantasy, Sci-Fi, Thriller",
+    "posterUrl": "/assets/posters/code_geass_tt0994314.jpg",
+    "color": "",
+    "imdbRating": "8.7",
+    "yourRating": "9",
+    "year": "2006",
+    "url": "https://www.imdb.com/title/tt0994314/",
+    "imdbId": "tt0994314"
+  },
+  {
+    "title": "Hyouka",
+    "reason": "Animation, Comedy, Drama, Family, Mystery",
+    "posterUrl": "/assets/posters/hyouka_tt2340841.jpg",
+    "color": "",
+    "imdbRating": "7.7",
+    "yourRating": "9",
+    "year": "2012",
+    "url": "https://www.imdb.com/title/tt2340841/",
+    "imdbId": "tt2340841"
+  },
+  {
+    "title": "Dororo",
+    "reason": "Animation, Action, Adventure, Fantasy, Horror",
+    "posterUrl": "/assets/posters/dororo_tt9458304.jpg",
+    "color": "",
+    "imdbRating": "8.2",
+    "yourRating": "10",
+    "year": "2019",
+    "url": "https://www.imdb.com/title/tt9458304/",
+    "imdbId": "tt9458304"
+  },
+  {
+    "title": "The Magicians",
+    "reason": "Drama, Fantasy, Mystery",
+    "posterUrl": "/assets/posters/the_magicians_tt4254242.jpg",
+    "color": "",
+    "imdbRating": "7.6",
+    "yourRating": "",
+    "year": "2015",
+    "url": "https://www.imdb.com/title/tt4254242/",
+    "imdbId": "tt4254242"
+  }
+]

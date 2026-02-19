@@ -1,0 +1,57 @@
+[
+  {
+    "title": "God of War",
+    "reason": "Action, Adventure, Drama, Fantasy",
+    "posterUrl": "/assets/posters/god_of_war.jpg",
+    "color": "",
+    "imdbRating": "9.5",
+    "yourRating": "",
+    "year": "2018",
+    "url": "https://www.imdb.com/title/tt5838588/",
+    "imdbId": "tt5838588"
+  },
+  {
+    "title": "God of War: Ragnarök",
+    "reason": "Action, Adventure, Drama, Fantasy",
+    "posterUrl": "/assets/posters/god_of_war_ragnar_k.jpg",
+    "color": "",
+    "imdbRating": "9.5",
+    "yourRating": "",
+    "year": "2022",
+    "url": "https://www.imdb.com/title/tt13119450/",
+    "imdbId": "tt13119450"
+  },
+  {
+    "title": "Hollow Knight",
+    "reason": "Animation, Action, Adventure, Fantasy",
+    "posterUrl": "/assets/posters/hollow_knight.jpg",
+    "color": "",
+    "imdbRating": "8.9",
+    "yourRating": "",
+    "year": "2017",
+    "url": "https://www.imdb.com/title/tt7791150/",
+    "imdbId": "tt7791150"
+  },
+  {
+    "title": "Lies of P",
+    "reason": "Action, Adventure, Fantasy",
+    "posterUrl": "/assets/posters/lies_of_p.jpg",
+    "color": "",
+    "imdbRating": "8.2",
+    "yourRating": "",
+    "year": "2023",
+    "url": "https://www.imdb.com/title/tt22022418/",
+    "imdbId": "tt22022418"
+  },
+  {
+    "title": "Warframe",
+    "reason": "Action, Adventure, Fantasy, Sci-Fi",
+    "posterUrl": "/assets/posters/warframe.jpg",
+    "color": "",
+    "imdbRating": "7.2",
+    "yourRating": "",
+    "year": "2013",
+    "url": "https://www.imdb.com/title/tt2984712/",
+    "imdbId": "tt2984712"
+  }
+]

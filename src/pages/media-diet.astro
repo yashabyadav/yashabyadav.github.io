@@ -3,7 +3,7 @@ import Header from "../components/Header.astro";
 import Sidebar from "../components/Sidebar.astro";
 import favMovies from "../content/media_diet_page/fav_movies.json";
 import favTVShows from "../content/media_diet_page/fav_tv_shows.json";
-import favGames from "../content/media_diet_page/fav_games.json";
+import favVideoGames from "../content/media_diet_page/fav_video_games.json";
 import favBooks from "../content/media_diet_page/fav_books.json";
 
 // Media data - easily updatable
@@ -58,14 +58,14 @@ const nowPageData_current = {
 const nowPageData_favorites = {
   movies: favMovies,
   tvshows: favTVShows,
-  games: favGames,
+  games: favVideoGames,
   books: favBooks
 };
 ---
 
 <!doctype html>
 <html>
-  <Header title="Now | Yashab Yadav" />
+  <Header title="Media diet | Yashab Yadav" />
   <body>
     <div class="content">
       <Sidebar selectedItem="now" />
@@ -74,9 +74,9 @@ const nowPageData_favorites = {
           <main class="fold-content-container">
             <!-- Hero Section -->
             <div class="fold-content">
-              <h1 class="heading-red">What I'm Into At the Moment</h1>
+              <h1 class="heading-red">The media that I am currently into</h1>
               <p class="lead">
-                A peek into my current media diet. Books, films, and games that are capturing my attention right now.
+                A peek into my current media diet. Films, TV shows, and games that are capturing my attention right now.
               </p>
             </div>
 
@@ -142,7 +142,11 @@ const nowPageData_favorites = {
             <!-- Poster Gallery Section -->
             <div class="poster-section">
               <h2 class="heading-red" style="margin-top: 3rem; margin-bottom: 1.5rem;">Favourites of All Time</h2>
-              
+              <div>
+                <p class="lead" style="margin-bottom: 2rem;">
+                These are some of my favorites of all time in no particular order.
+                </p>
+              </div>
               <!-- Movies -->
               <div class="gallery-subsection">
                 <h3 class="gallery-subheading">Movies</h3>
@@ -151,15 +155,15 @@ const nowPageData_favorites = {
                     <div class="poster-card">
                       <div class="poster-image-container" style={`--accent-color: ${item.color || '#353535'}`}>
                         <img 
-                          src={item.posterUrl} 
+                          src={item.posterUrl || '/assets/poster-placeholder.svg'} 
                           alt={item.title}
                           class="poster-image"
+                          onerror="this.onerror=null;this.src='/assets/poster-placeholder.svg'"
                         />
                         <div class="poster-overlay"></div>
                       </div>
                       <div class="poster-info">
                         <div class="poster-title">{item.title}</div>
-                        <div class="poster-subtitle">{item.reason}</div>
                       </div>
                     </div>
                   ))}
@@ -174,15 +178,15 @@ const nowPageData_favorites = {
                     <div class="poster-card">
                       <div class="poster-image-container" style={`--accent-color: ${item.color || '#353535'}`}>
                         <img 
-                          src={item.posterUrl} 
+                          src={item.posterUrl || '/assets/poster-placeholder.svg'} 
                           alt={item.title}
                           class="poster-image"
+                          onerror="this.onerror=null;this.src='/assets/poster-placeholder.svg'"
                         />
                         <div class="poster-overlay"></div>
                       </div>
                       <div class="poster-info">
                         <div class="poster-title">{item.title}</div>
-                        <div class="poster-subtitle">{item.reason}</div>
                       </div>
                     </div>
                   ))}
@@ -197,15 +201,15 @@ const nowPageData_favorites = {
                     <div class="poster-card">
                       <div class="poster-image-container" style={`--accent-color: ${item.color || '#353535'}`}>
                         <img 
-                          src={item.posterUrl} 
+                          src={item.posterUrl || '/assets/poster-placeholder.svg'} 
                           alt={item.title}
                           class="poster-image"
+                          onerror="this.onerror=null;this.src='/assets/poster-placeholder.svg'"
                         />
                         <div class="poster-overlay"></div>
                       </div>
                       <div class="poster-info">
                         <div class="poster-title">{item.title}</div>
-                        <div class="poster-subtitle">{item.reason}</div>
                       </div>
                     </div>
                   ))}
@@ -213,33 +217,33 @@ const nowPageData_favorites = {
               </div>
 
               <!-- Books -->
-              <div class="gallery-subsection">
+              <!--div class="gallery-subsection">
                 <h3 class="gallery-subheading">Books</h3>
                 <div class="poster-grid">
                   {nowPageData_favorites.books.map((item) => (
                     <div class="poster-card">
                       <div class="poster-image-container" style={`--accent-color: ${item.color || '#353535'}`}>
                         <img 
-                          src={item.posterUrl} 
+                          src={item.posterUrl || '/assets/poster-placeholder.svg'} 
                           alt={item.title}
                           class="poster-image"
+                          onerror="this.onerror=null;this.src='/assets/poster-placeholder.svg'"
                         />
                         <div class="poster-overlay"></div>
                       </div>
                       <div class="poster-info">
                         <div class="poster-title">{item.title}</div>
-                        <div class="poster-subtitle">{item.reason}</div>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
+            </div-->
 
             <!-- Footer Note -->
             <div class="fold-content" style="margin-top: 3rem; border-top: 1px solid #353535; padding-top: 2rem;">
               <p class="lead" style="font-size: 14px; color: #a8a8a8;">
-                Last updated: February 2025. This page is regularly updated as my media diet evolves.
+                Last updated: February 2026. This page is regularly updated as my media diet evolves.
               </p>
             </div>
           </main>
