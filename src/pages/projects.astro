@@ -28,7 +28,7 @@ const courseProjects = [
     title: "Traction Force Prediction from Fluorescent Cell Images",
     subtitle: "Machine Learning (Fall 2024)",
     shortDescription: "U-Net model for predicting cellular traction forces from fluorescence microscopy",
-    fullDescription: `I chose this project for my machine learning course project to understand the state of development in the machine learning applications to biophysics.<br/><br/>I had the following successful learning outcomes from this project:<ol class="ol-lead"><li>Understood the architecture of U-Net, one of the most successful neural net architecture in biomedical image segmentation (Ronneberger et al., 2015).</li><li>Studied the work of (Schmidt et al., 2022) who used U-Net to predict traction forces from fluorescent images of cells.<ul><li>They create a dataset of fluorescent images of various proteins (zyxin, actin, paxillin, myosin) labels across multiple cells and corresponding measurement of traction forces using traction force microscopy.</li><li>This way, they were able to train a U-Net to predict traction forces (both magnitude and direction) from fluorescent images.</li></ul></li><li>To test the generalizability of the Schimidt et al. model and get hands-on experience of concepts I learned during the course, I applied their model to images unseen by the model. I didn't perform any retraining to update the weights since I don't have access to a novel dataset. I just used the images I found in these publications which use TFM and label zyxin and actin: Kliewe et. al. 2024, Kudrayashov et al., 2022)</li><li>One of the main things I found was that the binary mask threshold when marking the fluorescent parts of an image before feeding it to the model affects the output force prediction. For this project I set the threshold manually, by eyeballing the minimum required threshold to capture maximum information in a given image, but more rigourous analysis on this is required to be certain.</li></ol><p class="lead">Here's an image showing images from Kliewe et. al. 2024, the corresponding binary masks for two different threshold values and the traction forces predicted by the model.</p><figure class="project-figure"><img class="project-figure-image" src="${tractionForceImage.src}" alt="Traction force prediction"/><figcaption style="color: #a8a8a8; font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">Traction force prediction from fluorescent images of cells using U-Net model. Top row images are from Kliewe et. al. 2024. Middle row images are binary masks created using two different threshold values. Bottom row images are corresponding traction forces predicted by Schmidt et al. U-Net model.</figcaption></figure><p class="lead">While I don't have ground truth traction force data for these images to quantitatively assess the performance of the model, I am happy to get some kind of prediction that is not garbage. This shows that the model has some generalizability to unseen data, at least qualitatively.</p>`,
+    fullDescription: `I chose this project for my machine learning course project to understand the state of development in the machine learning applications to biophysics.<br/>I had the following successful learning outcomes from this project:<ol><li>Understood the architecture of U-Net, one of the most successful neural net architecture in biomedical image segmentation (Ronneberger et al., 2015).</li><li>Studied the work of (Schmidt et al., 2022) who used U-Net to predict traction forces from fluorescent images of cells.<ul><li>They create a dataset of fluorescent images of various proteins (zyxin, actin, paxillin, myosin) labels across multiple cells and corresponding measurement of traction forces using traction force microscopy.</li><li>This way, they were able to train a U-Net to predict traction forces (both magnitude and direction) from fluorescent images.</li></ul></li><li>To test the generalizability of the Schimidt et al. model and get hands-on experience of concepts I learned during the course, I applied their model to images unseen by the model. I didn't perform any retraining to update the weights since I don't have access to a novel dataset. I just used the images I found in these publications which use TFM and label zyxin and actin: Kliewe et. al. 2024, Kudrayashov et al., 2022)</li><li>One of the main things I found was that the binary mask threshold when marking the fluorescent parts of an image before feeding it to the model affects the output force prediction. For this project I set the threshold manually, by eyeballing the minimum required threshold to capture maximum information in a given image, but more rigourous analysis on this is required to be certain.</li></ol><p class="lead">Here's an image showing images from Kliewe et. al. 2024, the corresponding binary masks for two different threshold values and the traction forces predicted by the model.</p><figure class="project-figure"><img class="project-figure-image" src="${tractionForceImage.src}" alt="Traction force prediction"/><figcaption style="color: #a8a8a8; font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">Traction force prediction from fluorescent images of cells using U-Net model. Top row images are from Kliewe et. al. 2024. Middle row images are binary masks created using two different threshold values. Bottom row images are corresponding traction forces predicted by Schmidt et al. U-Net model.</figcaption></figure><p class="lead">While I don't have ground truth traction force data for these images to quantitatively assess the performance of the model, I am happy to get some kind of prediction that is not garbage. This shows that the model has some generalizability to unseen data, at least qualitatively.</p>`,
     tags: ["Cytoskeleton dynamics", "Biophysics", "Machine learning", "Python", "Image analysis"]
   },
   {
@@ -36,7 +36,7 @@ const courseProjects = [
     title: "Soft Body Simulation",
     subtitle: "Introduction to Computational Physics (Spring 2025)",
     shortDescription: "2D mass-spring lattice simulator with collision detection and energy analysis",
-    fullDescription: `I developed a 2D soft‑body simulator for the course to get hands‑on experience with building physically motivated models and testing numerical integration strategies. The project focuses on a mass–spring lattice representation of deformable bodies, implementing basic constraints and collision responses, and producing interactive visualisations to inspect deformation and energy behaviour.<ol class="ol-lead"><li>Derived and implemented the equations of motion for a mass–spring lattice and assembled force contributions from structural, shear, and bending springs.</li><li>Explored time integration schemes and their tradeoffs:<ul><li>Explicit methods (e.g., Verlet / forward Euler) for simplicity and performance.</li><li>Implicit integration (Backward Euler) to improve stability for stiff systems.</li></ul></li><li>Added constraints and collision handling:<ul><li>Fixed anchors and positional constraints to simulate attachments and boundary conditions.</li><li>Simple collision detection and penalty‑based responses against static obstacles and a ground plane.</li></ul></li><li>Studied numerical energy behaviour and damping strategies to avoid numerical blowup while retaining plausible dynamics.</li><li>Built interactive visualisations and example scenes to inspect deformation, stress patterns, and to record simulation runs for analysis.</li></ol><p class="lead">The repository includes the simulator code, example scenes, and a README with instructions to build and run the demos. I used this project to understand how algorithmic choices—integration, constraint handling, and damping—affect stability and visual realism in physics simulations.</p>`,
+    fullDescription: `I developed a 2D soft‑body simulator for the course to get hands‑on experience with building physically motivated models and testing numerical integration strategies. The project focuses on a mass–spring lattice representation of deformable bodies, implementing basic constraints and collision responses, and producing interactive visualisations to inspect deformation and energy behaviour.<ol><li>Derived and implemented the equations of motion for a mass–spring lattice and assembled force contributions from structural, shear, and bending springs.</li><li>Explored time integration schemes and their tradeoffs:<ul><li>Explicit methods (e.g., Verlet / forward Euler) for simplicity and performance.</li><li>Implicit integration (Backward Euler) to improve stability for stiff systems.</li></ul></li><li>Added constraints and collision handling:<ul><li>Fixed anchors and positional constraints to simulate attachments and boundary conditions.</li><li>Simple collision detection and penalty‑based responses against static obstacles and a ground plane.</li></ul></li><li>Studied numerical energy behaviour and damping strategies to avoid numerical blowup while retaining plausible dynamics.</li><li>Built interactive visualisations and example scenes to inspect deformation, stress patterns, and to record simulation runs for analysis.</li></ol><p class="lead">The repository includes the simulator code, example scenes, and a README with instructions to build and run the demos. I used this project to understand how algorithmic choices—integration, constraint handling, and damping—affect stability and visual realism in physics simulations.</p>`,
     tags: ["Mass–spring systems", "Numerical methods", "Energy & stability", "Visualization", "Simulation"]
   }
 ];
@@ -319,12 +319,15 @@ const courseProjects = [
       }
     </style>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const cards = document.querySelectorAll('.bento-card');
+    <script is:inline>
+      function initializeProjectCards() {
+        const grids = document.querySelectorAll('.bento-grid');
         
-        cards.forEach(card => {
-          card.addEventListener('click', () => {
+        grids.forEach(grid => {
+          grid.addEventListener('click', (event) => {
+            const card = event.target.closest('.bento-card');
+            if (!card) return;
+            
             const shortDesc = card.querySelector('.project-short-description');
             const fullDesc = card.querySelector('.project-full-description');
             const expandText = card.querySelector('.expand-text');
@@ -332,7 +335,8 @@ const courseProjects = [
             const isExpanded = card.classList.contains('expanded');
             
             // Close all other expanded cards
-            cards.forEach(otherCard => {
+            const allCards = grid.querySelectorAll('.bento-card');
+            allCards.forEach(otherCard => {
               if (otherCard !== card && otherCard.classList.contains('expanded')) {
                 otherCard.classList.remove('expanded');
                 const otherShort = otherCard.querySelector('.project-short-description');
@@ -368,7 +372,13 @@ const courseProjects = [
             }
           });
         });
-      });
+      }
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeProjectCards);
+      } else {
+        initializeProjectCards();
+      }
     </script>
 
     <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
