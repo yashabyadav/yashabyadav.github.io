@@ -916,3 +916,82 @@ ol.ol-lead ul li {
   color: #803329;
   font-weight: bold;
 }
+
+/* Timeline Styles */
+.news-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  position: sticky;
+  top: 20px;
+  min-width: fit-content;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+article {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  position: relative;
+}
+
+aside {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 0;
+}
+
+.dot {
+  --size: 0.75rem;
+  width: var(--size);
+  height: var(--size);
+  margin: calc((1rem - var(--size)) / 2);
+  border-radius: 50%;
+  background-color: #803329;
+  flex-grow: 0;
+}
+
+.line {
+  flex-grow: 1;
+  margin: 8px 0;
+  width: 3px;
+  background-color: #803329;
+}
+
+.news-date {
+  display: block;
+  font-family: IBM Plex Mono, sans-serif;
+  font-size: 12px;
+  color: #a8a8a8;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.news-title {
+  color: #D4D4CA;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+@media screen and (max-width: 768px) {
+  .news-section {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .section-title {
+    position: static;
+  }
+}
