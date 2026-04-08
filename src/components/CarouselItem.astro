@@ -1,0 +1,259 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface ImageEntry {
+    src: ImageMetadata;
+    alt: string;
+}
+
+interface Props {
+    images: ImageEntry[];
+    caption: string;
+}
+
+const { images, caption } = Astro.props;
+---
+
+<figure class="masonry-item carousel-item" data-caption={caption}>
+    <div class="carousel-slides">
+        {
+            images.map((img, i) => (
+                <div
+                    class={`carousel-slide${i === 0 ? " active" : ""}`}
+                    data-alt={img.alt}
+                >
+                    <Image
+                        src={img.src}
+                        alt={img.alt}
+                        class="photo-img carousel-img"
+                    />
+                </div>
+            ))
+        }
+
+        <!-- Hover overlay: caption + dots -->
+        <div class="carousel-overlay">
+            <p class="carousel-caption-text">{images[0].alt}</p>
+            {
+                images.length > 1 && (
+                    <div class="carousel-dots">
+                        {images.map((_, i) => (
+                            <span
+                                class={`carousel-dot${i === 0 ? " active" : ""}`}
+                                data-index={i}
+                            />
+                        ))}
+                    </div>
+                )
+            }
+        </div>
+    </div>
+
+    {
+        images.length > 1 && (
+            <>
+                <button
+                    class="carousel-btn carousel-prev"
+                    aria-label="Previous image"
+                >
+                    &#8249;
+                </button>
+                <button
+                    class="carousel-btn carousel-next"
+                    aria-label="Next image"
+                >
+                    &#8250;
+                </button>
+            </>
+        )
+    }
+</figure>
+
+<style>
+    .carousel-slides {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border-radius: 8px;
+    }
+
+    .carousel-slide {
+        display: none;
+        width: 100%;
+        height: 100%;
+    }
+
+    .carousel-slide.active {
+        display: block;
+    }
+
+    .carousel-slide :global(.carousel-img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    /* Hover overlay */
+    .carousel-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        padding: 2rem 1rem 0.75rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    .carousel-item:hover .carousel-overlay {
+        opacity: 1;
+    }
+
+    .carousel-caption-text {
+        color: white;
+        font-size: 0.85rem;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .carousel-dots {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    .carousel-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.45);
+        transition:
+            background 0.2s ease,
+            transform 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    .carousel-dot.active {
+        background: white;
+        transform: scale(1.3);
+    }
+
+    /* Prev/next buttons */
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.55);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+        font-size: 1.5rem;
+        line-height: 1;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0 2px 0;
+    }
+
+    .carousel-prev {
+        left: 8px;
+    }
+
+    .carousel-next {
+        right: 8px;
+    }
+
+    .carousel-item:hover .carousel-btn {
+        opacity: 1;
+    }
+</style>
+
+<script>
+    function initCarousels() {
+        document
+            .querySelectorAll<HTMLElement>(".carousel-item")
+            .forEach((item) => {
+                if (item.dataset.carouselInit) return;
+                item.dataset.carouselInit = "true";
+
+                const slides =
+                    item.querySelectorAll<HTMLElement>(".carousel-slide");
+                const dots =
+                    item.querySelectorAll<HTMLElement>(".carousel-dot");
+                const captionEl =
+                    item.querySelector<HTMLElement>(".carousel-caption-text");
+                const prevBtn =
+                    item.querySelector<HTMLButtonElement>(".carousel-prev");
+                const nextBtn =
+                    item.querySelector<HTMLButtonElement>(".carousel-next");
+                let current = 0;
+                let autoTimer: ReturnType<typeof setInterval> | null = null;
+
+                function goTo(index: number) {
+                    slides[current].classList.remove("active");
+                    dots[current]?.classList.remove("active");
+                    current = (index + slides.length) % slides.length;
+                    slides[current].classList.add("active");
+                    dots[current]?.classList.add("active");
+                    if (captionEl) {
+                        captionEl.textContent =
+                            slides[current].dataset.alt || "";
+                    }
+                }
+
+                prevBtn?.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    goTo(current - 1);
+                });
+
+                nextBtn?.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    goTo(current + 1);
+                });
+
+                // Auto-advance on hover
+                item.addEventListener("mouseenter", () => {
+                    autoTimer = setInterval(() => goTo(current + 1), 2500);
+                });
+                item.addEventListener("mouseleave", () => {
+                    if (autoTimer) {
+                        clearInterval(autoTimer);
+                        autoTimer = null;
+                    }
+                });
+
+                // Swipe support
+                let startX = 0;
+                item.addEventListener(
+                    "touchstart",
+                    (e) => {
+                        startX = e.touches[0].clientX;
+                    },
+                    { passive: true },
+                );
+                item.addEventListener("touchend", (e) => {
+                    const diff = startX - e.changedTouches[0].clientX;
+                    if (Math.abs(diff) > 50) {
+                        goTo(diff > 0 ? current + 1 : current - 1);
+                    }
+                });
+            });
+    }
+
+    initCarousels();
+</script>

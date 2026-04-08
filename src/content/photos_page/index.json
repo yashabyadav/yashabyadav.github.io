@@ -1,32 +1,40 @@
 [
   {
-    "file": "home-desk-setup-2024-11-03-pic-1.jpg",
+    "type": "carousel",
     "caption": "Home Desk Setup - Nov 3, 2024",
-    "type": "image"
+    "files": [
+      { "file": "home-desk-setup-2024-11-03-pic-1.jpg", "alt": "Home Desk Setup 2024-11-03" },
+      { "file": "home-desk-setup-2024-11-03-pic-2.jpg", "alt": "Home Desk Setup 2024-11-03 - Detail" }
+    ]
   },
   {
-    "file": "home-desk-setup-2024-11-03-pic-2.jpg",
-    "caption": "Home Desk Setup - Nov 3, 2024 (Detail)",
-    "type": "image"
-  },
-  {
+    "type": "image",
     "file": "home-desk-setup-2024-04-13.jpg",
-    "caption": "Home Desk Setup - April 13, 2024",
-    "type": "image"
+    "caption": "Home Desk Setup - April 13, 2024"
   },
   {
+    "type": "video",
     "file": "naruto-kalimba-2022-06-22.mp4",
-    "caption": "Naruto Theme - Kalimba Cover (June 22, 2022)",
-    "type": "video"
+    "caption": "Naruto Theme - Kalimba Cover (June 22, 2022)"
   },
   {
+    "type": "video",
     "file": "just-the-two-of-us-guitar-2023-11-27.mp4",
-    "caption": "Just The Two Of Us - Guitar Cover (November 27, 2023)",
-    "type": "video"
+    "caption": "Just The Two Of Us - Guitar Cover (November 27, 2023)"
   },
   {
+    "type": "image",
     "file": "ascb-2025-12-08.jpg",
-    "caption": "At ASCB 2025 Conference in Philadelphia - December 08, 2025",
-    "type": "image"
+    "caption": "At ASCB 2025 Conference in Philadelphia - December 08, 2025"
+  },
+  {
+    "type": "carousel",
+    "caption": "Biophysical Society Annual Meeting - San Francisco, Feb 2026",
+    "files": [
+      { "file": "BPS_feb_2026/me_with_my_poster.jpg", "alt": "Me with my poster at BPS 2026" },
+      { "file": "BPS_feb_2026/me_with_my_PI_and_fellow_grad_student.jpg", "alt": "With my PI and fellow grad student at BPS 2026" },
+      { "file": "BPS_feb_2026/golden_gate_bridge_in_fog_clouds.jpg", "alt": "Golden Gate Bridge in fog and clouds" },
+      { "file": "BPS_feb_2026/random_SF_skyscraper_for_aesthetics.jpg", "alt": "San Francisco skyscraper" }
+    ]
   }
 ]
