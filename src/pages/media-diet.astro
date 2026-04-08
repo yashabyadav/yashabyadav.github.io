@@ -5,55 +5,9 @@ import favMovies from "../content/media_diet_page/fav_movies.json";
 import favTVShows from "../content/media_diet_page/fav_tv_shows.json";
 import favVideoGames from "../content/media_diet_page/fav_video_games.json";
 import favBooks from "../content/media_diet_page/fav_books.json";
+import currentMedia from "../content/media_diet_page/current.json";
 
-// Media data - easily updatable
-
-const nowPageData_current = {
-  watching: [
-
-    {
-      title: "The One (2001)",
-      status: "Rewatching",
-      reason: "",
-      posterUrl: "",
-      color: "#8B7355"
-    },
-    {
-      title: "Captive state (2019)",
-      status: "Recently rewatched",
-      reason: "",
-      thoughts: "When I first watched this movie, I didn't really understand it. But on this rewatch, I was blown away by how well it captures the feeling of living under an oppressive regime and the moral complexities of resistance. John Goodman is the GOAT!! This one is a must watch, especially in the current global political climate.",
-      posterUrl: "",
-      color: "#2D2D2D"
-    }
-  ],
-  playing: [
-    {
-      title: "Metro 2033 Redux",
-      status: "First playthrough",
-      reason: "",
-      posterUrl: "",
-      color: "#4A3E5E"
-    },
-    {
-      title: "Evil West",
-      status: "Currently playing",
-      thoughts: "Enjoying the combat system so far. Not perfect but the feedback of the gunplay is satisfying.",
-      posterUrl: "",
-      color: "#2D2D2D"
-    }
-  ],
-  reading: [
-    {
-      title: "",
-      status: "",
-      reason: "",
-      posterUrl: "",
-      color: ""
-    }
-    ]
-};
-
+const nowPageData_current = currentMedia;
 
 const nowPageData_favorites = {
   movies: favMovies,

@@ -4,14 +4,16 @@ import Sidebar from "../components/Sidebar.astro";
 
 import { Image } from "astro:assets";
 import VideoCard from "../components/VideoCard.astro";
-import home_desk_setup_2024_11_03_pic1 from "../content/photos_page/home-desk-setup-2024-11-03-pic-1.jpg";
-import home_desk_setup_2024_11_03_pic2 from "../content/photos_page/home-desk-setup-2024-11-03-pic-2.jpg";
-import home_desk_setup_2024_04_13 from "../content/photos_page/home-desk-setup-2024-04-13.jpg";
-import naruto_kalimba_cover from "../content/photos_page/naruto-kalimba-2022-06-22.mp4";
+import photosManifest from "../content/photos_page/index.json";
 
-import just_the_two_of_us_guitar_cover from "../content/photos_page/just-the-two-of-us-guitar-2023-11-27.mp4";
-
-import ascb_2025 from "../content/photos_page/ascb-2025-12-08.jpg";
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+    "../content/photos_page/*.{jpg,jpeg,png,gif,webp}",
+    { eager: true },
+);
+const allVideos = import.meta.glob<{ default: string }>(
+    "../content/photos_page/*.{mp4,webm,mov}",
+    { eager: true },
+);
 ---
 
 <!doctype html>
@@ -37,60 +39,34 @@ import ascb_2025 from "../content/photos_page/ascb-2025-12-08.jpg";
                         <h1 class="heading-red">Photos</h1>
 
                         <div class="masonry-grid">
-                            <figure class="masonry-item">
-                                <Image
-                                    src={home_desk_setup_2024_11_03_pic1}
-                                    alt="Home Desk Setup 2024-11-03"
-                                    class="photo-img"
-                                />
-                                <figcaption>
-                                    Home Desk Setup - Nov 3, 2024
-                                </figcaption>
-                            </figure>
-
-                            <figure class="masonry-item">
-                                <Image
-                                    src={home_desk_setup_2024_11_03_pic2}
-                                    alt="Home Desk Setup 2024-11-03 - Pic 2"
-                                    class="photo-img"
-                                />
-                                <figcaption>
-                                    Home Desk Setup - Nov 3, 2024 (Detail)
-                                </figcaption>
-                            </figure>
-
-                            <figure class="masonry-item">
-                                <Image
-                                    src={home_desk_setup_2024_04_13}
-                                    alt="Home Desk Setup 2024-04-13"
-                                    class="photo-img"
-                                />
-                                <figcaption>
-                                    Home Desk Setup - April 13, 2024
-                                </figcaption>
-                            </figure>
-
-                            <VideoCard
-                                src={naruto_kalimba_cover}
-                                alt="Naruto - Kalimba Cover"
-                                caption="Naruto Theme - Kalimba Cover (June 22, 2022)"
-                            />
-                            <VideoCard
-                                src={just_the_two_of_us_guitar_cover}
-                                alt="Just The Two Of Us - Guitar Cover"
-                                caption="Just The Two Of Us - Guitar Cover (November 27, 2023)"
-                            />
-
-                            <figure class="masonry-item">
-                                <Image
-                                    src={ascb_2025}
-                                    alt="ASCB 2025 Conference"
-                                    class="photo-img"
-                                />
-                                <figcaption>
-                                    At ASCB 2025 Conference in Philadelphia - December 08, 2025
-                                </figcaption>
-                            </figure>
+                            {photosManifest.map((item) => {
+                                if (item.type === "image") {
+                                    const key = `../content/photos_page/${item.file}`;
+                                    const mod = allImages[key];
+                                    if (!mod) return null;
+                                    return (
+                                        <figure class="masonry-item">
+                                            <Image
+                                                src={mod.default}
+                                                alt={item.caption}
+                                                class="photo-img"
+                                            />
+                                            <figcaption>{item.caption}</figcaption>
+                                        </figure>
+                                    );
+                                } else {
+                                    const key = `../content/photos_page/${item.file}`;
+                                    const mod = allVideos[key];
+                                    if (!mod) return null;
+                                    return (
+                                        <VideoCard
+                                            src={mod.default}
+                                            alt={item.caption}
+                                            caption={item.caption}
+                                        />
+                                    );
+                                }
+                            })}
                         </div>
                     </div>
 

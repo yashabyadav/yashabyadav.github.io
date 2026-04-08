@@ -9,11 +9,14 @@
     "preview": "astro preview",
     "astro": "astro",
     "sync-notes": "node scripts/sync-obsidian.js",
-    "parse-media": "node scripts/parse-csv-media.js"
+    "parse-media": "node scripts/parse-csv-media.js",
+    "admin": "node scripts/content-server.js"
   },
   "dependencies": {
     "astro": "^5.1.5",
     "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "multer": "^2.1.1",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0"
   }
