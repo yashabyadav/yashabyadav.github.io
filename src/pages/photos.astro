@@ -257,7 +257,7 @@ const allVideos = import.meta.glob<{ default: string }>(
                             width: 100%;
                         }
 
-                        .masonry-item {
+                        :global(.masonry-item) {
                             break-inside: avoid;
                             margin: 8px;
                             margin-bottom: 0px;
