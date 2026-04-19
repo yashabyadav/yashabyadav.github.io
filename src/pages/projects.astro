@@ -5,7 +5,16 @@ import Sidebar from "../components/Sidebar.astro";
 import { Image } from 'astro:assets';
 import tractionForceImage from '../content/projects/traction-force-prediction-ml-project.png';
 
-const personalProjects = [
+type ProjectCard = {
+  id: string;
+  title: string;
+  subtitle?: string;
+  shortDescription: string;
+  fullDescription: string;
+  tags: string[];
+};
+
+const personalProjects: ProjectCard[] = [
   {
     id: "homelab",
     title: "Homelab",
@@ -22,7 +31,7 @@ const personalProjects = [
   }
 ];
 
-const courseProjects = [
+const courseProjects: ProjectCard[] = [
   {
     id: "traction-force",
     title: "Traction Force Prediction from Fluorescent Cell Images",
@@ -38,6 +47,25 @@ const courseProjects = [
     shortDescription: "2D mass-spring lattice simulator with collision detection and energy analysis",
     fullDescription: `I developed a 2D soft‑body simulator for the course to get hands‑on experience with building physically motivated models and testing numerical integration strategies. The project focuses on a mass–spring lattice representation of deformable bodies, implementing basic constraints and collision responses, and producing interactive visualisations to inspect deformation and energy behaviour.<ol><li>Derived and implemented the equations of motion for a mass–spring lattice and assembled force contributions from structural, shear, and bending springs.</li><li>Explored time integration schemes and their tradeoffs:<ul><li>Explicit methods (e.g., Verlet / forward Euler) for simplicity and performance.</li><li>Implicit integration (Backward Euler) to improve stability for stiff systems.</li></ul></li><li>Added constraints and collision handling:<ul><li>Fixed anchors and positional constraints to simulate attachments and boundary conditions.</li><li>Simple collision detection and penalty‑based responses against static obstacles and a ground plane.</li></ul></li><li>Studied numerical energy behaviour and damping strategies to avoid numerical blowup while retaining plausible dynamics.</li><li>Built interactive visualisations and example scenes to inspect deformation, stress patterns, and to record simulation runs for analysis.</li></ol><p class="lead">The repository includes the simulator code, example scenes, and a README with instructions to build and run the demos. I used this project to understand how algorithmic choices—integration, constraint handling, and damping—affect stability and visual realism in physics simulations.</p>`,
     tags: ["Mass–spring systems", "Numerical methods", "Energy & stability", "Visualization", "Simulation"]
+  }
+];
+
+const currentResearch: ProjectCard[] = [
+  {
+    id: "actin-comet-tail",
+    title: "Project 1: Actin comet tail motility simulations",
+    subtitle: "Agent-based computational biophysics",
+    shortDescription: "Filament-level simulations of actin-propelled bead motility, connecting network architecture to force and motility.",
+    fullDescription: `<p class="lead">When certain bacteria like <em>Listeria monocytogenes</em> infect a cell, they hijack the cell's own cytoskeleton: they coat themselves with an actin nucleation-promoting protein and grow a branched actin &ldquo;comet tail&rdquo; that propels them through the cytoplasm. The same physics plays out in any crawling cell, where a branched actin network at the leading edge pushes the cell membrane forward. These networks are a model system for understanding how cells generate and regulate mechanical force.</p><p class="lead">I use three-dimensional Langevin dynamics simulations of these networks to understand the underlying physics of force generation and transmission.</p>`,
+    tags: ["Cytoskeleton", "Langevin dynamics", "Actin networks", "Cell motility", "C++", "Python"]
+  },
+  {
+    id: "single-molecule-tracking",
+    title: "Project 2: Single-molecule tracking of actin transport in crawling cells",
+    subtitle: "Single-molecule speckle microscopy analysis",
+    shortDescription: "Quantitative analysis of how actin subunits and regulatory proteins move inside living cells, using single-molecule microscopy data",
+    fullDescription: `<p class="lead">A crawling cell continuously burns actin subunits at its leading edge to push the membrane forward. Those subunits must be recycled from sites of disassembly at the rear back to the front. Whether passive diffusion alone is fast enough, or whether the cell employs some form of directed transport, has been a subject of debate for some time.</p><p class="lead">I am currently analyzing trajectory data of single molecules of actin subunits and regulatory proteins inside living cells to quantify their diffusion and drift properties.</p>`,
+    tags: ["Single-molecule microscopy", "Diffusion analysis", "Actin dynamics", "Python", "Statistical inference"]
   }
 ];
 ---
@@ -63,105 +91,146 @@ const courseProjects = [
                 - put on a hiatus for one reason or another.
                 <br />
                 <br />
-                For obvious reasons, I cannot show the work from my PhD projects that
-                are not published yet (Hoping I will have one soonsoon ╥﹏╥ )
               </p>
             </div>
+          <!-- Current Research Section -->
+          <div class="fold-content" style="margin-bottom: 2rem;">
+            <h2 class="heading-red" style="margin-top: 2rem; margin-bottom: 1rem;">Current Research</h2>
+            <p class="lead" style="margin-bottom: 1.5rem;">
+              I am a PhD student in Physics at Lehigh University, working with
+              <a href="https://www.lehigh.edu/~div206/" target="_blank" style="color: aliceblue">Prof. Dimitrios Vavylonis</a>.
+              My research is in biophysics, specifically on the mechanics and dynamics of
+              <strong>dendritic actin networks</strong>, the branched polymer networks that power variety 
+              of cellular processes including intracellular transport and
+              cell crawling. I work on two connected projects.
+            </p>
 
-            <!-- Personal/Hobby Projects Section -->
-            <div class="project-section">
-              <h2 class="heading-red" style="margin-top: 2rem; margin-bottom: 1.5rem;">Personal/Hobby Projects</h2>
-              <div class="bento-grid">
-                {personalProjects.map((project) => (
-                  <div class="bento-card" data-project-id={project.id}>
-                    <div class="card-header">
-                      <h3 class="project-card-title">{project.title}</h3>
-                      {project.subtitle && <div class="project-subtitle">{project.subtitle}</div>}
+            <div class="bento-grid">
+              {currentResearch.map((project) => (
+                <div class="bento-card" data-project-id={project.id}>
+                  <div class="card-header">
+                    <h3 class="project-card-title">{project.title}</h3>
+                    {project.subtitle && <div class="project-subtitle">{project.subtitle}</div>}
+                  </div>
+                  <div class="card-content">
+                    <p class="project-short-description">{project.shortDescription}</p>
+                    <div class="project-full-description" style="display: none;">
+                      <Fragment set:html={project.fullDescription} />
                     </div>
-                    <div class="card-content">
-                      <p class="project-short-description">{project.shortDescription}</p>
-                      <div class="project-full-description" style="display: none;">
-                        <Fragment set:html={project.fullDescription} />
-                      </div>
-                      <div class="chips-container">
-                        {project.tags.map((tag) => (
-                          <div class="single-chip">{tag}</div>
-                        ))}
-                      </div>
-                    </div>
-                    <div class="expand-indicator">
-                      <span class="expand-text">Click to expand</span>
-                      <span class="collapse-text" style="display: none;">Click to collapse</span>
+                    <div class="chips-container">
+                      {project.tags.map((tag) => (
+                        <div class="single-chip">{tag}</div>
+                      ))}
                     </div>
                   </div>
-                ))}
-              </div>
+                  <div class="expand-indicator">
+                    <span class="expand-text">Click to expand</span>
+                    <span class="collapse-text" style="display: none;">Click to collapse</span>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            <!-- Course Projects Section -->
-            <div class="project-section">
-              <h2 class="heading-red" style="margin-top: 3rem; margin-bottom: 1.5rem;">Course Projects</h2>
-              <div class="bento-grid">
-                {courseProjects.map((project) => (
-                  <div class="bento-card" data-project-id={project.id}>
-                    <div class="card-header">
-                      <h3 class="project-card-title">{project.title}</h3>
-                      {project.subtitle && <div class="project-subtitle">{project.subtitle}</div>}
-                    </div>
-                    <div class="card-content">
-                      <p class="project-short-description">{project.shortDescription}</p>
-                      <div class="project-full-description" style="display: none;">
-                        <Fragment set:html={project.fullDescription} />
-                      </div>
-                      <div class="chips-container">
-                        {project.tags.map((tag) => (
-                          <div class="single-chip">{tag}</div>
-                        ))}
-                      </div>
-                    </div>
-                    <div class="expand-indicator">
-                      <span class="expand-text">Click to expand</span>
-                      <span class="collapse-text" style="display: none;">Click to collapse</span>
+            <p class="lead" style="font-size: 14px; color: #a8a8a8;">
+              Both projects are ongoing PhD work. I cannot share unpublished results here, but I am happy
+              to talk about the physics — reach out via the contact page.
+            </p>
+          </div>
+
+                  <!-- Personal/Hobby Projects Section -->
+                  <div class="project-section">
+                    <h2 class="heading-red" style="margin-top: 2rem; margin-bottom: 1.5rem;">Personal/Hobby Projects</h2>
+                    <div class="bento-grid">
+                      {personalProjects.map((project) => (
+                        <div class="bento-card" data-project-id={project.id}>
+                          <div class="card-header">
+                            <h3 class="project-card-title">{project.title}</h3>
+                            {project.subtitle && <div class="project-subtitle">{project.subtitle}</div>}
+                          </div>
+                          <div class="card-content">
+                            <p class="project-short-description">{project.shortDescription}</p>
+                            <div class="project-full-description" style="display: none;">
+                              <Fragment set:html={project.fullDescription} />
+                            </div>
+                            <div class="chips-container">
+                              {project.tags.map((tag) => (
+                                <div class="single-chip">{tag}</div>
+                              ))}
+                            </div>
+                          </div>
+                          <div class="expand-indicator">
+                            <span class="expand-text">Click to expand</span>
+                            <span class="collapse-text" style="display: none;">Click to collapse</span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                ))}
+
+                  <!-- Course Projects Section -->
+                  <div class="project-section">
+                    <h2 class="heading-red" style="margin-top: 3rem; margin-bottom: 1.5rem;">Course Projects</h2>
+                    <div class="bento-grid">
+                      {courseProjects.map((project) => (
+                        <div class="bento-card" data-project-id={project.id}>
+                          <div class="card-header">
+                            <h3 class="project-card-title">{project.title}</h3>
+                            {project.subtitle && <div class="project-subtitle">{project.subtitle}</div>}
+                          </div>
+                          <div class="card-content">
+                            <p class="project-short-description">{project.shortDescription}</p>
+                            <div class="project-full-description" style="display: none;">
+                              <Fragment set:html={project.fullDescription} />
+                            </div>
+                            <div class="chips-container">
+                              {project.tags.map((tag) => (
+                                <div class="single-chip">{tag}</div>
+                              ))}
+                            </div>
+                          </div>
+                          <div class="expand-indicator">
+                            <span class="expand-text">Click to expand</span>
+                            <span class="collapse-text" style="display: none;">Click to collapse</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <!-- Footer Note -->
+                  <div class="fold-content" style="margin-top: 3rem; border-top: 1px solid #353535; padding-top: 2rem;">
+                    <p class="lead" style="font-size: 14px; color: #a8a8a8;">
+                      Last updated: April 2026. This page showcases ongoing and completed projects.
+                    </p>
+                  </div>
+                </main>
               </div>
-            </div>
+            </nav>
+          </div>
 
-            <!-- Footer Note -->
-            <div class="fold-content" style="margin-top: 3rem; border-top: 1px solid #353535; padding-top: 2rem;">
-              <p class="lead" style="font-size: 14px; color: #a8a8a8;">
-                Last updated: February 2026. This page showcases ongoing and completed projects.
-              </p>
-            </div>
-          </main>
-        </div>
-      </nav>
-    </div>
+          <style>
+            /* Bento Grid Container */
+            .bento-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+              gap: 24px;
+              margin: 2rem 0;
+              width: 100%;
+            }
 
-    <style>
-      /* Bento Grid Container */
-      .bento-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 24px;
-        margin: 2rem 0;
-        width: 100%;
-      }
-
-      /* Bento Cards */
-      .bento-card {
-        background-color: rgba(53, 53, 53, 0.12);
-        border: 1px solid #353535;
-        border-radius: 12px;
-        padding: 24px;
-        backdrop-filter: blur(4px);
-        transition: all 200ms ease;
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        position: relative;
-      }
+            /* Bento Cards */
+            .bento-card {
+              background-color: rgba(53, 53, 53, 0.12);
+              border: 1px solid #353535;
+              border-radius: 12px;
+              padding: 24px;
+              backdrop-filter: blur(4px);
+              transition: all 200ms ease;
+              display: flex;
+              flex-direction: column;
+              cursor: pointer;
+              position: relative;
+            }
 
       .bento-card:hover {
         border-color: #803329;
