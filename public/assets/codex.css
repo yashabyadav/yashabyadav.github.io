@@ -1,0 +1,667 @@
+/* ============================================================
+   Paper & ASCII Design System — "Codex"
+   A printed technical grimoire: near-black ink on cool "manual
+   gray" paper, old-style serif prose against a typewriter mono
+   voice, illuminated drop caps, printer's-flower ornaments, and
+   animated ASCII figures. Red appears only as rare rubrication.
+
+   Ported from the Claude "Paper & ASCII Design System" project
+   into this Astro site. Tokens + paper/ascii utilities are global
+   (harmless — nothing else uses them); the element-level reskin is
+   scoped under `body.codex` so pages without that class are
+   untouched. Add class="codex" to a page's <body> to opt in.
+   ============================================================ */
+
+/* --- Fonts: serif (manuscript) + typewriter mono + blackletter --- */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=UnifrakturCook:wght@700&display=swap');
+
+/* Capo Nodi — Renaissance illuminated caps (SIL OFL, m-casanova).
+   Uppercase-only; used exclusively for DropCap. License: fonts/OFL.txt */
+@font-face {
+  font-family: 'Capo Nodi';
+  src: url('/assets/fonts/CapoNodi.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  /* --- Ink (foreground) --- near-black, faintly warm like press ink --- */
+  --ink-900: #16150f;
+  --ink-700: #26251d;
+  --ink-500: #4f4e45;
+  --ink-300: #6f6e64;
+  --ink-200: #8a897e;
+
+  /* --- Paper (surfaces) --- cool neutral gray, bright sheet to edge --- */
+  --paper-050: #e6e6e4;
+  --paper-100: #d8d8d6;
+  --paper-200: #c8c8c5;   /* DEFAULT manual gray */
+  --paper-300: #b8b8b4;
+  --paper-400: #a6a6a1;
+
+  /* --- Periwinkle tint --- */
+  --paper-blue-050: #d9dce3;
+  --paper-blue:      #bcc0ca;
+  --paper-blue-300:  #a7abb7;
+
+  /* --- Rubric (accent) --- rare manuscript red --- */
+  --rubric-600: #5e241d;
+  --rubric-500: #8f2f22;   /* the one spot of red */
+  --rubric-400: #ab4436;
+  --rubric-100: #d9c2bd;
+
+  /* --- Rules & lines --- */
+  --rule-strong: #8f8f8a;
+  --rule-soft:   #a9a9a3;
+
+  /* --- Utility --- */
+  --shadow-ink: rgba(20, 19, 12, 0.20);
+  --wash-warm:  rgba(143, 47, 34, 0.06);
+
+  /* --- Semantic aliases --- */
+  --paper-bg:      var(--paper-200);
+  --surface-card:  var(--paper-050);
+  --surface-sunk:  var(--paper-300);
+
+  --text-body:     var(--ink-700);
+  --text-heading:  var(--ink-900);
+  --text-strong:   var(--ink-900);
+  --text-muted:    var(--ink-500);
+  --text-faint:    var(--ink-300);
+  --text-inverted: var(--paper-050);
+  --text-rubric:   var(--rubric-500);
+
+  --accent:       var(--rubric-500);
+  --accent-hover: var(--rubric-400);
+  --accent-press: var(--rubric-600);
+  --accent-tint:  var(--rubric-100);
+
+  --border:      var(--rule-strong);
+  --border-soft: var(--rule-soft);
+
+  --link:       var(--ink-900);
+  --link-hover: var(--rubric-500);
+
+  --ascii-ink:    var(--ink-500);
+  --ascii-accent: var(--ink-900);
+
+  /* --- Type families --- */
+  --font-serif:       'EB Garamond', 'Iowan Old Style', Georgia, serif;
+  --font-mono:        'Courier Prime', 'Courier New', ui-monospace, monospace;
+  --font-blackletter: 'UnifrakturCook', 'EB Garamond', serif;
+  --font-display: var(--font-serif);
+  --font-body:    var(--font-serif);
+  --font-label:   var(--font-mono);
+  --font-ascii:   var(--font-mono);
+  --font-dropcap: 'Capo Nodi', 'UnifrakturCook', var(--font-serif);
+
+  /* --- Type scale --- */
+  --text-hero:      56px;
+  --text-h1:        44px;
+  --text-h2:        32px;
+  --text-h3:        23px;
+  --text-lead:      21px;
+  --text-body-size: 18px;
+  --text-small:     16px;
+  --text-meta:      14px;
+  --text-label:     12px;
+
+  /* --- Line heights --- */
+  --lh-tight:   1.03;
+  --lh-snug:    1.16;
+  --lh-body:    1.32;
+  --lh-relaxed: 1.42;
+
+  /* --- Weights --- */
+  --fw-light:    400;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+
+  /* --- Letterspacing --- */
+  --ls-label:   0.16em;
+  --ls-display: -0.004em;
+  --ls-body:    -0.006em;
+
+  /* --- Spacing scale --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 68px;
+  --space-9: 96px;
+
+  /* --- Layout --- */
+  --sidebar-w:   280px;
+  --content-max: 680px;
+  --content-pad: 46px;
+
+  /* --- Radii --- crisp / near-square --- */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 3px;
+  --radius-pill: 999px;
+
+  /* --- Borders --- */
+  --border-hair: 1px;
+  --border-rule: 1.5px;
+  --border-heavy: 2px;
+
+  /* --- Shadows --- faint & neutral --- */
+  --shadow-sheet: 0 1px 2px var(--shadow-ink);
+  --shadow-lift:  0 2px 4px var(--shadow-ink), 0 12px 30px -18px var(--shadow-ink);
+  --shadow-press: inset 0 1px 3px var(--shadow-ink);
+
+  /* --- Motion --- unhurried, mechanical --- */
+  --ease-paper: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --ease-step:  steps(1, end);
+  --dur-fast:   90ms;
+  --dur-base:   200ms;
+  --dur-slow:   360ms;
+
+  /* --- Paper grain --- fine gray stipple + faint diagonal tooth --- */
+  --paper-grain:
+    radial-gradient(rgba(20,19,12,0.10) 0.5px, transparent 0.6px),
+    radial-gradient(rgba(20,19,12,0.07) 0.5px, transparent 0.6px),
+    repeating-linear-gradient(52deg,  rgba(20,19,12,0.015) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(128deg, rgba(20,19,12,0.013) 0 1px, transparent 1px 4px);
+  --paper-grain-size: 3px 3px, 5px 5px, auto, auto;
+  --rule-height: 28px;
+  --dot-gap: 22px;
+
+  /* --- ASCII --- */
+  --ascii-ambient-opacity: 0.5;
+  --ascii-fps: 12;
+}
+
+/* ============================================================
+   PAPER SURFACES (global utilities — harmless when unused)
+   ============================================================ */
+.paper-surface {
+  background-color: var(--paper-bg);
+  background-image: var(--paper-grain);
+  background-size: var(--paper-grain-size);
+  color: var(--text-body);
+}
+.paper-surface--card   { background-color: var(--surface-card); }
+.paper-surface--sunk   { background-color: var(--surface-sunk); }
+.paper-surface--bright { background-color: var(--paper-050); }
+.paper-surface--blue   { background-color: var(--paper-blue); }
+
+.paper-ruled {
+  background-color: var(--surface-card);
+  background-image:
+    var(--paper-grain),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 calc(var(--rule-height) - 1px),
+      var(--rule-soft) calc(var(--rule-height) - 1px) var(--rule-height)
+    );
+}
+.paper-dotgrid {
+  background-color: var(--surface-card);
+  background-image:
+    var(--paper-grain),
+    radial-gradient(var(--rule-strong) 0.9px, transparent 0.9px);
+  background-size: auto, var(--dot-gap) var(--dot-gap);
+}
+
+/* ============================================================
+   ASCII (global utilities)
+   ============================================================ */
+.ascii {
+  font-family: var(--font-ascii);
+  font-size: 13px;
+  line-height: 13px;
+  color: var(--ascii-ink);
+  white-space: pre;
+  margin: 0;
+  letter-spacing: 0;
+  font-variant-ligatures: none;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
+.ascii--accent { color: var(--ascii-accent); }
+.ascii--ink    { color: var(--text-strong); }
+.ascii--faint  { color: var(--ink-200); }
+
+@keyframes ascii-caret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.ascii-caret::after {
+  content: "\2588";
+  color: var(--accent);
+  animation: ascii-caret 1s steps(1, end) infinite;
+  margin-left: 1px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ascii-caret::after { animation: none; opacity: 1; }
+}
+
+/* ============================================================
+   CODEX PAGE — element reskin, scoped so other pages are untouched
+   ============================================================ */
+body.codex {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  color: var(--text-body);
+  background-color: var(--paper-bg);
+  background-image: var(--paper-grain);
+  background-size: var(--paper-grain-size);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.codex h1,
+body.codex h2,
+body.codex h3,
+body.codex h4 {
+  font-family: var(--font-display);
+  color: var(--text-heading);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-display);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+body.codex h1 { font-size: var(--text-hero); line-height: var(--lh-tight); font-weight: var(--fw-medium); }
+body.codex h2 { font-size: var(--text-h2);   line-height: var(--lh-snug);  font-weight: var(--fw-medium); }
+body.codex h3 { font-size: var(--text-h3);   line-height: var(--lh-snug);  font-weight: var(--fw-regular); }
+
+body.codex p {
+  margin: 0 0 var(--space-3);
+  color: var(--text-body);
+  font-size: var(--text-body-size);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  word-spacing: -0.02em;
+  text-wrap: pretty;
+}
+
+body.codex a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-soft);
+  transition: color var(--dur-fast) var(--ease-paper),
+              border-color var(--dur-fast) var(--ease-paper);
+}
+body.codex a:hover { color: var(--link-hover); border-bottom-color: var(--accent-hover); }
+
+body.codex ::selection { background: var(--accent-tint); color: var(--rubric-600); }
+
+/* Kill the old dark-theme accent color that inline styles apply to links */
+body.codex a[style*="aliceblue"] { color: var(--link) !important; }
+body.codex a[style*="aliceblue"]:hover { color: var(--link-hover) !important; }
+
+/* --- Headings that were brick-red become ink in the codex look --- */
+body.codex .heading-red { color: var(--text-heading); font-weight: var(--fw-medium); }
+
+/* --- Lead / intro paragraph --- */
+body.codex .lead {
+  font-size: var(--text-lead);
+  line-height: var(--lh-relaxed);
+  color: var(--text-strong);
+  max-width: 60ch;
+}
+
+/* ============================================================
+   LAYOUT — sidebar + content column
+   ============================================================ */
+body.codex .content { width: 100vw; height: 100vh; display: flex; }
+
+body.codex .sidebar {
+  width: 100%;
+  height: 100%;
+  max-width: var(--sidebar-w);
+  background-color: var(--paper-100);
+  background-image: var(--paper-grain);
+  background-size: var(--paper-grain-size);
+  border-right: 1px solid var(--border);
+  padding: 28px 22px;
+}
+body.codex .nav-content {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  gap: 28px;
+}
+
+/* profile card */
+body.codex .w-nav-brand { border-bottom: none; }
+body.codex .niv-image {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid var(--rule-strong);
+  object-fit: cover;
+  filter: grayscale(0.4) contrast(1.04);
+  margin-right: 13px;
+}
+body.codex .w-nav-brand .heading-red {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: var(--fw-regular);
+  color: var(--text-strong);
+  line-height: 1.2;
+}
+body.codex .label-gray {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  text-transform: lowercase;
+}
+
+/* nav rows — active gets an inked left rule + paper-sunk fill */
+body.codex .w-nav-menu { display: flex; flex-direction: column; gap: 3px; }
+body.codex .nav-link-container {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  background-color: transparent;
+  font-family: var(--font-label);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease-paper),
+              color var(--dur-fast) var(--ease-paper);
+}
+body.codex .nav-link-container:hover { background-color: var(--wash-warm); }
+body.codex .nav-link-container.w--current {
+  color: var(--text-strong);
+  background-color: var(--surface-sunk);
+  border-left-color: var(--accent);
+}
+/* recolor the white-inverted line icons to ink */
+body.codex .nav-link-image {
+  width: 18px;
+  filter: brightness(0) saturate(0);
+  opacity: 0.72;
+}
+body.codex .nav-link-container.w--current .nav-link-image { opacity: 0.95; }
+body.codex .navbar-icon { filter: brightness(0) saturate(0); opacity: 0.8; }
+
+body.codex .main {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center;
+  padding: var(--content-pad) 48px 82px;
+  overflow: auto;
+}
+body.codex .container {
+  width: 100%;
+  max-width: var(--content-max);
+  display: flex; flex-direction: column;
+  gap: 52px;
+}
+
+/* ============================================================
+   CODEX FURNITURE
+   ============================================================ */
+
+/* Folio — page number / section mark in typewriter mono */
+body.codex .folio {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+body.codex .folio-row {
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+/* Frontispiece plate */
+body.codex .frontispiece {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--surface-card);
+  box-shadow: var(--shadow-sheet);
+}
+body.codex .frontispiece-plate {
+  padding: 26px 18px 6px;
+  display: flex; justify-content: center;
+}
+body.codex .frontispiece-body { padding: 10px 30px 30px; }
+
+body.codex .ascii-banner { display: inline-block; line-height: 0; }
+body.codex .ascii-banner pre {
+  font-family: var(--font-ascii);
+  font-size: 11px;
+  line-height: 11px;
+  color: var(--text-strong);
+  margin: 0;
+  white-space: pre;
+  user-select: none;
+  font-variant-ligatures: none;
+  text-rendering: optimizeSpeed;
+}
+
+/* Figure plate caption */
+body.codex figure.plate { margin: 0; text-align: center; }
+body.codex .plate-caption {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+body.codex .plate-caption .fig {
+  font-style: italic;
+  font-family: var(--font-serif);
+}
+
+/* Hero name — typewriter reveal */
+body.codex .codex-hero {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: var(--fw-medium);
+  color: var(--text-heading);
+  margin: 0 0 14px;
+  text-align: center;
+  min-height: 1.05em;
+}
+
+/* Drop cap — illuminated initial */
+body.codex .dropcap-para {
+  margin: 0 0 var(--space-3);
+  text-align: justify;
+  font-size: var(--text-lead);
+  line-height: var(--lh-relaxed);
+  color: var(--text-strong);
+}
+body.codex .dropcap {
+  float: left;
+  font-family: var(--font-dropcap);
+  font-size: calc(3 * var(--text-body-size) * var(--lh-body) * 1.02);
+  line-height: 0.82;
+  margin: 6px 12px 2px 0;
+  padding: 0.08em 0.1em 0;
+  color: var(--text-rubric);
+  border: 1.5px solid var(--ink-900);
+  box-shadow: inset 0 0 0 3px var(--surface-card), inset 0 0 0 4px var(--rule-strong);
+  background:
+    repeating-linear-gradient(45deg, var(--wash-warm) 0 2px, transparent 2px 5px),
+    var(--surface-card);
+  user-select: none;
+}
+
+/* Section rule — the manual's //------ TITLE ------ dashed heading */
+body.codex .section-rule {
+  display: flex; align-items: center; width: 100%;
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+}
+body.codex .section-rule .prefix { color: var(--text-faint); }
+body.codex .section-rule .dash {
+  flex: 1; height: 0;
+  border-top: 1px dashed var(--rule-strong);
+  margin: 0 10px;
+  transform: translateY(1px);
+}
+body.codex .section-rule .title {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-900);
+}
+body.codex .section-rule .note {
+  font-style: italic;
+  font-family: var(--font-serif);
+  color: var(--text-faint);
+}
+
+/* Ornament divider — printer's flower section break */
+body.codex .ornament-divider {
+  display: flex; align-items: center; gap: 16px;
+  color: var(--text-muted);
+}
+body.codex .ornament-divider .rule {
+  flex: 1; height: 0;
+  border-top: 1px solid var(--border-soft);
+}
+body.codex .ornament-divider .glyph {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  letter-spacing: 0.25em;
+  white-space: nowrap;
+}
+body.codex .ornament-divider.dinkus { justify-content: center; }
+body.codex .ornament-divider.dinkus .glyph { letter-spacing: 0.2em; font-size: 18px; }
+
+/* Buttons — paper-press action controls */
+body.codex .button,
+body.codex .w-button {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-label);
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  padding: 11px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background-color: var(--surface-card);
+  color: var(--text-strong);
+  box-shadow: var(--shadow-sheet);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-paper),
+              background-color var(--dur-fast) var(--ease-paper),
+              box-shadow var(--dur-fast) var(--ease-paper);
+}
+body.codex .button:hover,
+body.codex .w-button:hover {
+  background-color: var(--paper-100);
+  box-shadow: var(--shadow-lift);
+  border-bottom-color: var(--border);
+}
+body.codex .button:active,
+body.codex .w-button:active { transform: translateY(1px); }
+
+/* Primary (stamp-red) variant */
+body.codex .button--primary {
+  color: var(--text-inverted);
+  background-color: var(--accent);
+  border-color: var(--accent-press);
+}
+body.codex .button--primary:hover { background-color: var(--accent-hover); }
+
+body.codex .button-row { display: flex; gap: 12px; margin-top: 18px; }
+
+/* Chips — mono keyword pills */
+body.codex .chips-container {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start;
+  margin-top: 8px;
+}
+body.codex .single-chip {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-medium);
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 7px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background-color: var(--surface-sunk);
+  color: var(--text-strong);
+  white-space: nowrap;
+}
+body.codex .single-chip.small-chip { padding: 3px 8px; font-size: 12px; }
+
+/* ============================================================
+   TIMELINE — the "news" feed, reskinned as a dotted codex rail
+   ============================================================ */
+body.codex .section-content { display: flex; flex-direction: column; }
+body.codex .section-content article {
+  display: flex; gap: 20px; width: 100%; position: relative;
+  margin-top: 0 !important;
+}
+body.codex .section-content aside {
+  display: flex; flex-direction: column; align-items: center;
+  flex-grow: 0; width: 20px;
+}
+/* replace the round dot with a printer's-flower node */
+body.codex .section-content .dot {
+  width: auto; height: auto; margin: 0; border-radius: 0;
+  background: none;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1;
+  color: var(--ink-900);
+  margin-top: 1px;
+}
+body.codex .section-content .dot::before { content: "\2756"; }
+/* dashed connector down from each node */
+body.codex .section-content article:not(:last-child) aside::after {
+  content: "";
+  flex-grow: 1;
+  width: 1.5px;
+  margin: 6px 0;
+  background-image: repeating-linear-gradient(to bottom, var(--rule-strong) 0 4px, transparent 4px 8px);
+}
+body.codex .section-content article > div { padding-bottom: var(--space-6); flex: 1; }
+body.codex .section-content article:last-child > div { padding-bottom: 0; }
+body.codex .news-date {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media screen and (max-width: 991px) {
+  body.codex .content { flex-direction: column; }
+  body.codex .sidebar {
+    height: auto; max-width: 100%;
+    padding: 18px 22px;
+  }
+  body.codex .nav-content {
+    height: auto; flex-direction: row;
+    justify-content: space-between; align-items: center;
+    gap: 0;
+  }
+  body.codex .w-nav-menu { flex-direction: row; }
+}
+@media screen and (max-width: 767px) {
+  body.codex .codex-hero { font-size: 40px; }
+  body.codex .main { padding-left: 24px; padding-right: 24px; }
+  body.codex .frontispiece-body { padding: 10px 18px 24px; }
+}

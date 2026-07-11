@@ -6,160 +6,334 @@ import Sidebar from "../components/Sidebar.astro";
 <!doctype html>
 <html>
   <Header title="Yashab Yadav" />
-  <body>
+  <body class="codex">
     <div class="content">
       <Sidebar selectedItem="home" />
       <nav class="main">
         <div class="container">
-          <main class="fold-content-container">
-            <div class="fold-content">
-              <h1 class="heading-red">Hi! I'm Yashab</h1>
-              <p class="lead">
-                I work on understanding the mechanobiology of the cell using
-                mathematical and computational modelling.
-              </p>
-              <p class="lead">
-                Welcome to my online space which serves as my portfolio, notes
-                collection, project showcases and other random stuff.
-              </p>
+          <!-- Folio -->
+          <div class="folio-row">
+            <span class="folio">§1 &nbsp;·&nbsp; YASHAB YADAV</span>
+            <span class="folio">01</span>
+          </div>
+
+          <!-- Frontispiece -->
+          <header class="frontispiece">
+            <div class="frontispiece-plate">
+              <figure class="plate">
+                <div class="ascii-banner">
+                  <pre id="ascii-banner" aria-hidden="true"></pre>
+                </div>
+                <figcaption class="plate-caption">
+                  <span class="fig">fig 1</span> — a Turing pattern, reaction–diffusion
+                  from random seeds
+                </figcaption>
+              </figure>
             </div>
-
-            <!-- section class="news-section">
-              <div class="section-title">
-                <h3 class="heading-red">News</h3>
-              </div>
-              <div class="section-content">
-                <article>
-                  <aside>
-                    <div class="dot"></div>
-                  </aside>
-                  <div>
-                    <time class="news-date" datetime="2026-02">Feb 2026</time>
-                    <div class="news-title">
-                      Attended the Biophysical Society Annual Meeting in San
-                      Francisco and presented a poster on ongoing research.
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </section-->
-
-            <div class="about-section" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
-                <h3 class="heading-red">News</h3>
-            </div>
-              <div class="section-content">
-                <article>
-                  <aside>
-                    <div class="dot"></div>
-                  </aside>
-                  <div>
-                    <time class="news-date" datetime="2026-04">Apr 2026</time>
-                    <p class="lead">
-                      Defended my dissertation proposal and passed the general exam, advancing to PhD candidacy.
-                    </p>
-                  </div>
-                </article>
-                <article style="margin-top: 1rem;">
-                  <aside>
-                    <div class="dot"></div>
-                  </aside>
-                  <div>
-                    <time class="news-date" datetime="2026-02">Feb 2026</time>
-                    <p class="lead">
-                      Presented a poster on my current project titled <a href="https://www.cell.com/biophysj/abstract/S0006-3495(25)03275-8" target="_blank" rel="noopener noreferrer" style="color: aliceblue">Force and network structure of branched actin networks</a> at the Biophysical Society Annual Meeting in San Francisco, February 2026.
-                    </p>
-                  </div>
-                </article>
-            </div>
-            <!-- About Me Section -->
-            <div class="about-section" style="margin-top: 2.5rem; margin-bottom: 1.5rem;">
-              <h3 class="heading-red">About Me</h3>
-              <p class="lead" style="margin-top: 1.2rem;">
-                I am a PhD student in the Department of Physics at Lehigh University working on
-                computational and mathematical models of cellular
-                mechanobiology. My research focuses on how mechanical forces
-                emerge from cytoskeletal dynamics, with recent work on actin
-                comet tail motility and force generation driven by F-actin
-                nucleation.
-              </p>
-
-              <p class="lead">
-                I am working towards specializing in building mechanistic simulations that connect
-                physical models to experimental observables. My work routinely
-                involves numerical methods, stochastic simulations, data
-                analysis, and visualization, with an emphasis on model clarity,
-                reproducibility, and interpretability.
-              </p>
-
-              <p class="lead">
-                I am comfortable working across theory, code, and data, and I
-                enjoy translating complex physical ideas into efficient
-                computational workflows. Most of my development is in Python and
-                C++, supported by scripting, automation, and visualization tools
-                tailored to research-scale problems.
-              </p>
-
-              <p class="lead">
-                In parallel with research, I have taught introductory physics
-                courses and laboratories, where I focus on building intuition
-                and helping students become confident with quantitative
-                reasoning.
-              </p>
-
-              <p class="lead">
-                I earned my Master’s degree in Physics from IIT Jodhpur and my
-                Bachelor’s degree in Physics from the University of Delhi,
-                India.
-              </p>
-              <a
-                href="/CV.pdf"
-                style="margin-top: 0.9rem;"
-                download="CV.pdf"
-                class="button w-button">Download CV</a
+            
+            <div class="frontispiece-body">
+              <h1
+                class="codex-hero ascii-caret"
+                id="hero-name"
+                data-text="yashab yadav"
               >
-            </div>
-
-            <!-- Contact Section -->
-            <!-- <a href="mailto:yay223@lehigh.edu" class="button w-button">Contact</a> -->
-            <div
-              class="about-section"
-              style="margin-top: 2rem; margin-bottom: 0.9rem;"
-            >
-              <h3 class="heading-red">Contact</h3>
-              <p class="lead">
-                Feel free to reach out to me via email at
-                <a href="mailto:yay223@lehigh.edu" style="color: aliceblue">yay223@lehigh.edu</a>, 
+                yashab yadav
+              </h1>
+              <p class="dropcap-para">
+                <span class="dropcap" aria-hidden="true">I</span>
+                &nbsp;work on understanding the mechanobiology of the cell using
+                mathematical and computational modelling — the machinery of
+                actin, formins, and the forces cells exert on the world. Welcome
+                to my online space, which serves as my portfolio, notes
+                collection, project showcases, and other random stuff.
               </p>
-              <p class="lead">
-                or connect with me on:
-                <a
-                  href="https://www.linkedin.com/in/yashab-yadav/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style="color: aliceblue"
-                  >LinkedIn</a
-                >,
-
-                <a
-                  href="https://twitter.com/yashab_yadav"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style="color: aliceblue"
-                  >Twitter</a
-                >, or check out my 
-                <a
-                  href="https://github.com/yashabyadav"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style="color: aliceblue"
-                  >GitHub</a
-                >.
-              </p>
+              <div class="button-row">
+                <a href="/CV.pdf" download="CV.pdf" class="button button--primary"
+                  >Download CV</a
+                >
+                <a href="mailto:yay223@lehigh.edu" class="button">Contact</a>
+              </div>
             </div>
-          </main>
-          <div class="comet-visual" aria-hidden="true"></div>
+          </header>
+
+          <!-- News -->
+          <section>
+            <div class="section-rule">
+              <span class="prefix">//</span>
+              <span class="dash"></span>
+              <span class="title">News</span>
+              <span class="dash"></span>
+              <span class="note">recent</span>
+            </div>
+            <div class="section-content">
+              <article>
+                <aside>
+                  <div class="dot"></div>
+                </aside>
+                <div>
+                  <time class="news-date" datetime="2026-04">Apr 2026</time>
+                  <p class="lead">
+                    Defended my dissertation proposal and passed the general
+                    exam, advancing to PhD candidacy.
+                  </p>
+                </div>
+              </article>
+              <article>
+                <aside>
+                  <div class="dot"></div>
+                </aside>
+                <div>
+                  <time class="news-date" datetime="2026-02">Feb 2026</time>
+                  <p class="lead">
+                    Presented a poster on my current project titled <a
+                      href="https://www.cell.com/biophysj/abstract/S0006-3495(25)03275-8"
+                      target="_blank"
+                      rel="noopener noreferrer">Force and network structure of
+                      branched actin networks</a
+                    > at the Biophysical Society Annual Meeting in San Francisco,
+                    February 2026.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <div class="ornament-divider">
+            <span class="rule"></span>
+            <span class="glyph">•◆•</span>
+            <span class="rule"></span>
+          </div>
+
+          <!-- About Me -->
+          <section class="about-section">
+            <div class="section-rule">
+              <span class="prefix">//</span>
+              <span class="dash"></span>
+              <span class="title">About Me</span>
+              <span class="dash"></span>
+              <span class="note">the author</span>
+            </div>
+            <p class="lead">
+              I am a PhD student in the Department of Physics at Lehigh
+              University working on computational and mathematical models of
+              cellular mechanobiology. My research focuses on how mechanical
+              forces emerge from cytoskeletal dynamics, with recent work on actin
+              comet tail motility and force generation driven by F-actin
+              nucleation.
+            </p>
+            <p class="lead">
+              I am working towards specializing in building mechanistic
+              simulations that connect physical models to experimental
+              observables. My work routinely involves numerical methods,
+              stochastic simulations, data analysis, and visualization, with an
+              emphasis on model clarity, reproducibility, and interpretability.
+            </p>
+            <p class="lead">
+              I am comfortable working across theory, code, and data, and I enjoy
+              translating complex physical ideas into efficient computational
+              workflows. Most of my development is in Python and C++, supported
+              by scripting, automation, and visualization tools tailored to
+              research-scale problems.
+            </p>
+            <p class="lead">
+              In parallel with research, I have taught introductory physics
+              courses and laboratories, where I focus on building intuition and
+              helping students become confident with quantitative reasoning.
+            </p>
+            <p class="lead">
+              I earned my Master’s degree in Physics from IIT Jodhpur and my
+              Bachelor’s degree in Physics from the University of Delhi, India.
+            </p>
+          </section>
+
+          <div class="ornament-divider">
+            <span class="rule"></span>
+            <span class="glyph">•◆•</span>
+            <span class="rule"></span>
+          </div>
+
+          <!-- Contact -->
+          <section class="about-section">
+            <div class="section-rule">
+              <span class="prefix">//</span>
+              <span class="dash"></span>
+              <span class="title">Contact</span>
+              <span class="dash"></span>
+              <span class="note">reach out</span>
+            </div>
+            <p class="lead">
+              Feel free to reach out to me via email at
+              <a href="mailto:yay223@lehigh.edu">yay223@lehigh.edu</a>,
+            </p>
+            <p class="lead">
+              or connect with me on:
+              <a
+                href="https://www.linkedin.com/in/yashab-yadav/"
+                target="_blank"
+                rel="noopener noreferrer">LinkedIn</a
+              >,
+              <a
+                href="https://twitter.com/yashab_yadav"
+                target="_blank"
+                rel="noopener noreferrer">Twitter</a
+              >, or check out my
+              <a
+                href="https://github.com/yashabyadav"
+                target="_blank"
+                rel="noopener noreferrer">GitHub</a
+              >.
+            </p>
+          </section>
+
+          <div class="ornament-divider dinkus">
+            <span class="glyph">❧</span>
+          </div>
         </div>
       </nav>
     </div>
+
+    <script>
+      // ==========================================================
+      // Codex home — ported from the Paper & ASCII Design System:
+      //   AsciiBanner (Gray-Scott "turing" mode) + AsciiText typewriter.
+      //   Framework-free so it runs in this Astro page. Cleans up on
+      //   Astro view-transition navigation.
+      // ==========================================================
+      const RAMP = " .:-=+*#%@";
+
+      function startBanner(el: HTMLElement, { cols = 46, rows = 26, fps = 24, feed = 0.055, kill = 0.062 } = {}) {
+        // Gray-Scott reaction-diffusion (a Turing pattern-forming system):
+        //   da/dt = Da*lap(a) - a*b^2 + feed*(1-a)
+        //   db/dt = Db*lap(b) + a*b^2 - (kill+feed)*b
+        // STEPS integration steps are advanced per rendered frame; a lower
+        // STEPS makes the time evolution slower and easier to watch grow.
+        const N = cols * rows;
+        const Da = 1.0, Db = 0.5, dt = 1.0, STEPS = 3, RESEED = 900;
+        let a = new Float32Array(N), b = new Float32Array(N);
+        let na = new Float32Array(N), nb = new Float32Array(N);
+        let iters = 0;
+
+        const wrap = (x: number, y: number) =>
+          (((y % rows) + rows) % rows) * cols + (((x % cols) + cols) % cols);
+
+        function seedShapes() {
+          a.fill(1); b.fill(0);
+          const n = 3 + Math.floor(Math.random() * 4);
+          for (let s = 0; s < n; s++) {
+            const type = Math.floor(Math.random() * 4);
+            const cx = Math.floor(Math.random() * cols);
+            const cy = Math.floor(Math.random() * rows);
+            const w = 2 + Math.floor(Math.random() * 5);
+            const h = 2 + Math.floor(Math.random() * 5);
+            const sq = 2 + Math.floor(Math.random() * 4);
+            for (let dy = -h - 1; dy <= h + 1; dy++) {
+              for (let dx = -w - 1; dx <= w + 1; dx++) {
+                let inside = false;
+                if (type === 0) inside = Math.abs(dx) <= sq && Math.abs(dy) <= sq;
+                else if (type === 1) inside = Math.abs(dx) <= w && Math.abs(dy) <= Math.max(1, h >> 1);
+                else if (type === 2) inside = (dx * dx) / (w * w + 0.01) + (dy * dy) / (h * h + 0.01) <= 1;
+                else {
+                  const ty = dy + h;
+                  inside = ty >= 0 && ty <= 2 * h && Math.abs(dx) <= w * (1 - ty / (2 * h + 0.01));
+                }
+                if (inside) b[wrap(cx + dx, cy + dy)] = 1.0;
+              }
+            }
+          }
+          for (let i = 0; i < N; i++) a[i] += (Math.random() - 0.5) * 0.01;
+        }
+
+        function step() {
+          for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+              const i = y * cols + x;
+              const l = wrap(x - 1, y), r = wrap(x + 1, y), u = wrap(x, y - 1), d = wrap(x, y + 1);
+              const ul = wrap(x - 1, y - 1), ur = wrap(x + 1, y - 1), dl = wrap(x - 1, y + 1), dr = wrap(x + 1, y + 1);
+              const lapA = -a[i] + 0.2 * (a[l] + a[r] + a[u] + a[d]) + 0.05 * (a[ul] + a[ur] + a[dl] + a[dr]);
+              const lapB = -b[i] + 0.2 * (b[l] + b[r] + b[u] + b[d]) + 0.05 * (b[ul] + b[ur] + b[dl] + b[dr]);
+              const abb = a[i] * b[i] * b[i];
+              const va = a[i] + (Da * lapA - abb + feed * (1 - a[i])) * dt;
+              const vb = b[i] + (Db * lapB + abb - (kill + feed) * b[i]) * dt;
+              na[i] = va < 0 ? 0 : va > 1 ? 1 : va;
+              nb[i] = vb < 0 ? 0 : vb > 1 ? 1 : vb;
+            }
+          }
+          a.set(na); b.set(nb);
+        }
+
+        function render() {
+          const lines = [];
+          for (let y = 0; y < rows; y++) {
+            let line = "";
+            for (let x = 0; x < cols; x++) {
+              const v = b[y * cols + x];
+              let n = (v - 0.14) * 6.5;
+              n = n > 0.999 ? 0.999 : n < 0 ? 0 : n;
+              line += RAMP[Math.floor(n * RAMP.length)];
+            }
+            lines.push(line);
+          }
+          el.textContent = lines.join("\n");
+        }
+
+        seedShapes();
+
+        // The Turing figure always animates its propagation from the seeds —
+        // that time evolution is the whole point of the plate, so it runs even
+        // under prefers-reduced-motion (the static ambient modes would not).
+        let raf: number, last = 0;
+        const interval = 1000 / fps;
+        function frame(now: number) {
+          raf = requestAnimationFrame(frame);
+          if (now - last < interval) return;
+          last = now;
+          for (let s = 0; s < STEPS; s++) step();
+          iters += STEPS;
+          if (iters > RESEED) { seedShapes(); iters = 0; }
+          render();
+        }
+        raf = requestAnimationFrame(frame);
+        return () => cancelAnimationFrame(raf);
+      }
+
+      function startTypewriter(el: HTMLElement, { speed = 45, startDelay = 250 } = {}) {
+        const text = el.dataset.text || el.textContent || "";
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce) {
+          el.textContent = text;
+          el.classList.remove("ascii-caret");
+          return () => {};
+        }
+        let ci = 0, timer: ReturnType<typeof setTimeout>;
+        el.textContent = "";
+        const tick = () => {
+          if (ci <= text.length) {
+            el.textContent = text.slice(0, ci);
+            ci += 1;
+            timer = setTimeout(tick, speed);
+          } else {
+            el.classList.remove("ascii-caret");
+          }
+        };
+        timer = setTimeout(tick, startDelay);
+        return () => clearTimeout(timer);
+      }
+
+      let cleanups: Array<() => void> = [];
+      function initCodexHome() {
+        cleanups.forEach((fn) => fn && fn());
+        cleanups = [];
+        const banner = document.getElementById("ascii-banner");
+        const hero = document.getElementById("hero-name");
+        if (banner) cleanups.push(startBanner(banner));
+        if (hero) cleanups.push(startTypewriter(hero));
+      }
+
+      document.addEventListener("astro:page-load", initCodexHome);
+      document.addEventListener("astro:before-swap", () => {
+        cleanups.forEach((fn) => fn && fn());
+        cleanups = [];
+      });
+    </script>
   </body>
 </html>
