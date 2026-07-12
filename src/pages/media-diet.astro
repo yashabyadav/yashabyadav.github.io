@@ -66,7 +66,7 @@ const galleries: { title: string; items: { title: string; posterUrl?: string; co
                         <div class="status-title">{item.title}</div>
                         <div class="status-reason">{item.reason}</div>
                         <div class="status-meta">{item.status}</div>
-                        <div class="status-thoughts">{item.thoughts}</div>
+                        <div class="status-thoughts" set:html={item.thoughts} />
                       </div>
                     ))}
                   </div>
@@ -84,7 +84,7 @@ const galleries: { title: string; items: { title: string; posterUrl?: string; co
                         <div class="status-title">{item.title}</div>
                         <div class="status-reason">{item.reason}</div>
                         <div class="status-meta">{item.status}</div>
-                        <div class="status-thoughts">{item.thoughts}</div>
+                        <div class="status-thoughts" set:html={item.thoughts} />
                       </div>
                     ))}
                   </div>
@@ -141,7 +141,7 @@ const galleries: { title: string; items: { title: string; posterUrl?: string; co
             <span class="glyph">❧</span>
           </div>
 
-          <p class="folio" style="text-align:center;">Last updated February 2026</p>
+          <p class="folio" style="text-align:center;">Last updated June 2026</p>
         </div>
       </nav>
     </div>
