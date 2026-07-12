@@ -5,12 +5,16 @@ import Sidebar from "../../components/Sidebar.astro";
 
 <!doctype html>
 <html>
-    <Header title="Yashab Yadav" />
-    <body>
+    <Header title="Homelab | Yashab Yadav" />
+    <body class="codex">
         <div class="content">
             <Sidebar selectedItem="projects" />
             <nav class="main">
                 <div class="container">
+                    <div class="folio-row">
+                        <span class="folio">§2 &nbsp;·&nbsp; PROJECTS / HOMELAB</span>
+                        <span class="folio">02a</span>
+                    </div>
                     <div class="back-nav-container">
                         <a href="/projects" class="back-nav-button w-inline-block">
                             <img
@@ -27,14 +31,52 @@ import Sidebar from "../../components/Sidebar.astro";
                             <h1 class="heading-red">
                                 You made it to my homelab page!
                             </h1>
-                            <h2 style="margin-top: 4rem; color: aliceblue">
-                                Hang tight! I am working on this page.
-                            </h2>
+                            <div class="ornament-divider" style="margin: 2rem 0;">
+                                <span class="rule"></span>
+                                <span class="glyph">•◆•</span>
+                                <span class="rule"></span>
+                            </div>
+                            <p class="lead">
+                                Hang tight — I am still setting this page up.
+                                Check back soon for a tour of the hardware,
+                                services, and the tailnet holding it all together.
+                            </p>
                         </div>
-                        <div class="comet-visual" aria-hidden="true"></div>
                     </main>
                 </div>
             </nav>
         </div>
+
+        <style>
+            .fold-content { max-width: var(--content-max); }
+
+            .back-nav-container {
+                color: var(--text-muted);
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                font-family: var(--font-mono);
+                font-size: 12px;
+            }
+            .back-nav-button {
+                color: var(--text-muted);
+                background-color: transparent;
+                border-radius: var(--radius-md);
+                margin-top: -12px;
+                padding: 10px 12px;
+                text-decoration: none;
+                transition: background-color var(--dur-fast) var(--ease-paper),
+                            color var(--dur-fast) var(--ease-paper);
+            }
+            .back-nav-button:hover {
+                backdrop-filter: none;
+                background-color: var(--wash-warm);
+                color: var(--text-rubric);
+            }
+            .back-nav-img {
+                width: 16px;
+                filter: brightness(0) saturate(0);
+                opacity: 0.6;
+            }
+        </style>
     </body>
 </html>

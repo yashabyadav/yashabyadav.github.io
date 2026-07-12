@@ -60,20 +60,6 @@ const { selectedItem } = Astro.props;
         <div>Software development</div>
       </a -->
       <a
-        href="https://yashabyadav.github.io/notes/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="nav-link-container w-inline-block"
-      >
-        <img
-          src="/assets/notes.svg"
-          loading="eager"
-          alt=""
-          class="nav-link-image"
-        />
-        <div>Notes</div>
-      </a>
-      <a
         href="/projects"
         class={`nav-link-container w-inline-block ${
           selectedItem === 'projects' ? 'w--current' : ''
@@ -88,9 +74,9 @@ const { selectedItem } = Astro.props;
         <div>Projects</div>
       </a>
        <a
-        href="/photos"
+        href="/scrapbook"
         class={`nav-link-container w-inline-block ${
-          selectedItem === 'photos' ? 'w--current' : ''
+          selectedItem === 'scrapbook' ? 'w--current' : ''
         }`}
       >
         <img
@@ -99,7 +85,7 @@ const { selectedItem } = Astro.props;
           alt=""
           class="nav-link-image"
         />
-        <div>Photos</div>
+        <div>Scrapbook</div>
       </a>
       <!--a
         href="/now"

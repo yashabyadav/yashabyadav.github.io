@@ -19,12 +19,16 @@ const allVideos = import.meta.glob<{ default: string }>(
 
 <!doctype html>
 <html>
-    <Header title="Photos | Yashab Yadav" />
-    <body>
+    <Header title="Scrapbook | Yashab Yadav" />
+    <body class="codex">
         <div class="content">
-            <Sidebar selectedItem="photos" />
+            <Sidebar selectedItem="scrapbook" />
             <nav class="main">
                 <div class="container">
+                    <div class="folio-row">
+                        <span class="folio">§3 &nbsp;·&nbsp; SCRAPBOOK</span>
+                        <span class="folio">03</span>
+                    </div>
                     <div class="back-nav-container">
                         <a href="/" class="back-nav-button w-inline-block">
                             <img
@@ -37,7 +41,10 @@ const allVideos = import.meta.glob<{ default: string }>(
                         </a>
                     </div>
                     <div class="content-container">
-                        <h1 class="heading-red">Photos</h1>
+                        <h1 class="heading-red">Scrapbook</h1>
+                        <p class="lead photos-intro">
+                            Desks, travels, and moments worth a shutter.
+                        </p>
 
                         <div class="masonry-grid">
                             {photosManifest.map((item) => {
@@ -84,6 +91,10 @@ const allVideos = import.meta.glob<{ default: string }>(
                                 }
                             })}
                         </div>
+                    </div>
+
+                    <div class="ornament-divider dinkus">
+                        <span class="glyph">❧</span>
                     </div>
 
                     <div id="lightbox" class="lightbox hidden">
@@ -238,7 +249,40 @@ const allVideos = import.meta.glob<{ default: string }>(
 
                     <style>
                         .heading-red {
-                            margin-bottom: 1.5rem;
+                            margin-bottom: 0.5rem;
+                        }
+                        .photos-intro {
+                            margin-bottom: 1.75rem;
+                            color: var(--text-muted);
+                        }
+
+                        /* Back navigation — inked, quiet */
+                        .back-nav-container {
+                            color: var(--text-muted);
+                            letter-spacing: 0.12em;
+                            text-transform: uppercase;
+                            font-family: var(--font-mono);
+                            font-size: 12px;
+                        }
+                        .back-nav-button {
+                            color: var(--text-muted);
+                            background-color: transparent;
+                            border-radius: var(--radius-md);
+                            margin-top: -12px;
+                            padding: 10px 12px;
+                            text-decoration: none;
+                            transition: background-color var(--dur-fast) var(--ease-paper),
+                                        color var(--dur-fast) var(--ease-paper);
+                        }
+                        .back-nav-button:hover {
+                            backdrop-filter: none;
+                            background-color: var(--wash-warm);
+                            color: var(--text-rubric);
+                        }
+                        .back-nav-img {
+                            width: 16px;
+                            filter: brightness(0) saturate(0);
+                            opacity: 0.6;
                         }
 
                         /* Override global container width for photos page */

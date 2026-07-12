@@ -19,7 +19,7 @@ const personalProjects: ProjectCard[] = [
     id: "homelab",
     title: "Homelab",
     shortDescription: "Self-hosted infrastructure for learning and experimentation",
-    fullDescription: `As much as I like watching PewDiePie, I think I come off as a try hard when I tell people about my homelab and then try to convince them that I got into the hobby before <a href="https://www.youtube.com/@PewDiePie" style="color: aliceblue">he made it cool</a>.<br/><br/>In any case, working on a homelab is such a rewarding hobby in my experience. To read more about what I have been working on checkout my <a href="/projects/homelab" style="color: aliceblue">homelab page</a>.`,
+    fullDescription: `As much as I like watching PewDiePie, I think I come off as a try hard when I tell people about my homelab and then try to convince them that I got into the hobby before <a href="https://www.youtube.com/@PewDiePie">he made it cool</a>.<br/><br/>In any case, working on a homelab is such a rewarding hobby in my experience. To read more about what I have been working on checkout my <a href="/projects/homelab">homelab page</a>.`,
     tags: ["Linux", "Networking", "Open source software", "Docker", "Hardware"]
   },
   {
@@ -37,7 +37,7 @@ const courseProjects: ProjectCard[] = [
     title: "Traction Force Prediction from Fluorescent Cell Images",
     subtitle: "Machine Learning (Fall 2024)",
     shortDescription: "U-Net model for predicting cellular traction forces from fluorescence microscopy",
-    fullDescription: `I chose this project for my machine learning course project to understand the state of development in the machine learning applications to biophysics.<br/>I had the following successful learning outcomes from this project:<ol><li>Understood the architecture of U-Net, one of the most successful neural net architecture in biomedical image segmentation (Ronneberger et al., 2015).</li><li>Studied the work of (Schmidt et al., 2022) who used U-Net to predict traction forces from fluorescent images of cells.<ul><li>They create a dataset of fluorescent images of various proteins (zyxin, actin, paxillin, myosin) labels across multiple cells and corresponding measurement of traction forces using traction force microscopy.</li><li>This way, they were able to train a U-Net to predict traction forces (both magnitude and direction) from fluorescent images.</li></ul></li><li>To test the generalizability of the Schimidt et al. model and get hands-on experience of concepts I learned during the course, I applied their model to images unseen by the model. I didn't perform any retraining to update the weights since I don't have access to a novel dataset. I just used the images I found in these publications which use TFM and label zyxin and actin: Kliewe et. al. 2024, Kudrayashov et al., 2022)</li><li>One of the main things I found was that the binary mask threshold when marking the fluorescent parts of an image before feeding it to the model affects the output force prediction. For this project I set the threshold manually, by eyeballing the minimum required threshold to capture maximum information in a given image, but more rigourous analysis on this is required to be certain.</li></ol><p class="lead">Here's an image showing images from Kliewe et. al. 2024, the corresponding binary masks for two different threshold values and the traction forces predicted by the model.</p><figure class="project-figure"><img class="project-figure-image" src="${tractionForceImage.src}" alt="Traction force prediction"/><figcaption style="color: #a8a8a8; font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">Traction force prediction from fluorescent images of cells using U-Net model. Top row images are from Kliewe et. al. 2024. Middle row images are binary masks created using two different threshold values. Bottom row images are corresponding traction forces predicted by Schmidt et al. U-Net model.</figcaption></figure><p class="lead">While I don't have ground truth traction force data for these images to quantitatively assess the performance of the model, I am happy to get some kind of prediction that is not garbage. This shows that the model has some generalizability to unseen data, at least qualitatively.</p>`,
+    fullDescription: `I chose this project for my machine learning course project to understand the state of development in the machine learning applications to biophysics.<br/>I had the following successful learning outcomes from this project:<ol><li>Understood the architecture of U-Net, one of the most successful neural net architecture in biomedical image segmentation (Ronneberger et al., 2015).</li><li>Studied the work of (Schmidt et al., 2022) who used U-Net to predict traction forces from fluorescent images of cells.<ul><li>They create a dataset of fluorescent images of various proteins (zyxin, actin, paxillin, myosin) labels across multiple cells and corresponding measurement of traction forces using traction force microscopy.</li><li>This way, they were able to train a U-Net to predict traction forces (both magnitude and direction) from fluorescent images.</li></ul></li><li>To test the generalizability of the Schimidt et al. model and get hands-on experience of concepts I learned during the course, I applied their model to images unseen by the model. I didn't perform any retraining to update the weights since I don't have access to a novel dataset. I just used the images I found in these publications which use TFM and label zyxin and actin: Kliewe et. al. 2024, Kudrayashov et al., 2022)</li><li>One of the main things I found was that the binary mask threshold when marking the fluorescent parts of an image before feeding it to the model affects the output force prediction. For this project I set the threshold manually, by eyeballing the minimum required threshold to capture maximum information in a given image, but more rigourous analysis on this is required to be certain.</li></ol><p class="lead">Here's an image showing images from Kliewe et. al. 2024, the corresponding binary masks for two different threshold values and the traction forces predicted by the model.</p><figure class="project-figure"><img class="project-figure-image" src="${tractionForceImage.src}" alt="Traction force prediction"/><figcaption>Traction force prediction from fluorescent images of cells using U-Net model. Top row images are from Kliewe et. al. 2024. Middle row images are binary masks created using two different threshold values. Bottom row images are corresponding traction forces predicted by Schmidt et al. U-Net model.</figcaption></figure><p class="lead">While I don't have ground truth traction force data for these images to quantitatively assess the performance of the model, I am happy to get some kind of prediction that is not garbage. This shows that the model has some generalizability to unseen data, at least qualitatively.</p>`,
     tags: ["Cytoskeleton dynamics", "Biophysics", "Machine learning", "Python", "Image analysis"]
   },
   {
@@ -68,249 +68,220 @@ const currentResearch: ProjectCard[] = [
     tags: ["Single-molecule microscopy", "Diffusion analysis", "Actin dynamics", "Python", "Statistical inference"]
   }
 ];
+
+const sections: { title: string; note: string; items: ProjectCard[] }[] = [
+  { title: "Current Research", note: "ongoing", items: currentResearch },
+  { title: "Personal / Hobby", note: "for fun", items: personalProjects },
+  { title: "Course Projects", note: "coursework", items: courseProjects },
+];
 ---
 
 <!doctype html>
 <html>
   <Header title="Projects | Yashab Yadav" />
-  <body>
+  <body class="codex">
     <div class="content">
       <Sidebar selectedItem="projects" />
       <nav class="main">
         <div class="container">
-          <main class="fold-content-container">
-            <div class="fold-content">
-              <h1 class="heading-red">Projects</h1>
-              <p class="lead">
-                Here is a collection of projects that I:
-                <br />
-                - am working on
-                <br />
-                - have worked on
-                <br />
-                - put on a hiatus for one reason or another.
-                <br />
-                <br />
-              </p>
-            </div>
-          <!-- Current Research Section -->
-          <div class="fold-content" style="margin-bottom: 2rem;">
-            <h2 class="heading-red" style="margin-top: 2rem; margin-bottom: 1rem;">Current Research</h2>
-            <p class="lead" style="margin-bottom: 1.5rem;">
+          <!-- Folio -->
+          <div class="folio-row">
+            <span class="folio">§2 &nbsp;·&nbsp; PROJECTS</span>
+            <span class="folio">02</span>
+          </div>
+
+          <div class="fold-content">
+            <h1 class="heading-red">Projects</h1>
+            <p class="lead">
+              Here is a collection of projects that I am working on, have worked
+              on, or put on a hiatus for one reason or another.
+            </p>
+            <p class="lead">
               I am a PhD student in Physics at Lehigh University, working with
-              <a href="https://www.lehigh.edu/~div206/" target="_blank" style="color: aliceblue">Prof. Dimitrios Vavylonis</a>.
-              My research is in biophysics, specifically on the mechanics and dynamics of
-              <strong>dendritic actin networks</strong>, the branched polymer networks that power variety 
-              of cellular processes including intracellular transport and
-              cell crawling. I work on two connected projects.
-            </p>
-
-            <div class="bento-grid">
-              {currentResearch.map((project) => (
-                <div class="bento-card" data-project-id={project.id}>
-                  <div class="card-header">
-                    <h3 class="project-card-title">{project.title}</h3>
-                    {project.subtitle && <div class="project-subtitle">{project.subtitle}</div>}
-                  </div>
-                  <div class="card-content">
-                    <p class="project-short-description">{project.shortDescription}</p>
-                    <div class="project-full-description" style="display: none;">
-                      <Fragment set:html={project.fullDescription} />
-                    </div>
-                    <div class="chips-container">
-                      {project.tags.map((tag) => (
-                        <div class="single-chip">{tag}</div>
-                      ))}
-                    </div>
-                  </div>
-                  <div class="expand-indicator">
-                    <span class="expand-text">Click to expand</span>
-                    <span class="collapse-text" style="display: none;">Click to collapse</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p class="lead" style="font-size: 14px; color: #a8a8a8;">
-              Both projects are ongoing PhD work. I cannot share unpublished results here, but I am happy
-              to talk about the physics — reach out via the contact page.
+              <a href="https://www.lehigh.edu/~div206/" target="_blank"
+                >Prof. Dimitrios Vavylonis</a
+              >. My research is in biophysics, specifically on the mechanics and
+              dynamics of <strong>dendritic actin networks</strong>, the branched
+              polymer networks that power a variety of cellular processes
+              including intracellular transport and cell crawling.
             </p>
           </div>
 
-                  <!-- Personal/Hobby Projects Section -->
-                  <div class="project-section">
-                    <h2 class="heading-red" style="margin-top: 2rem; margin-bottom: 1.5rem;">Personal/Hobby Projects</h2>
-                    <div class="bento-grid">
-                      {personalProjects.map((project) => (
-                        <div class="bento-card" data-project-id={project.id}>
-                          <div class="card-header">
-                            <h3 class="project-card-title">{project.title}</h3>
-                            {project.subtitle && <div class="project-subtitle">{project.subtitle}</div>}
-                          </div>
-                          <div class="card-content">
-                            <p class="project-short-description">{project.shortDescription}</p>
-                            <div class="project-full-description" style="display: none;">
-                              <Fragment set:html={project.fullDescription} />
-                            </div>
-                            <div class="chips-container">
-                              {project.tags.map((tag) => (
-                                <div class="single-chip">{tag}</div>
-                              ))}
-                            </div>
-                          </div>
-                          <div class="expand-indicator">
-                            <span class="expand-text">Click to expand</span>
-                            <span class="collapse-text" style="display: none;">Click to collapse</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <!-- Course Projects Section -->
-                  <div class="project-section">
-                    <h2 class="heading-red" style="margin-top: 3rem; margin-bottom: 1.5rem;">Course Projects</h2>
-                    <div class="bento-grid">
-                      {courseProjects.map((project) => (
-                        <div class="bento-card" data-project-id={project.id}>
-                          <div class="card-header">
-                            <h3 class="project-card-title">{project.title}</h3>
-                            {project.subtitle && <div class="project-subtitle">{project.subtitle}</div>}
-                          </div>
-                          <div class="card-content">
-                            <p class="project-short-description">{project.shortDescription}</p>
-                            <div class="project-full-description" style="display: none;">
-                              <Fragment set:html={project.fullDescription} />
-                            </div>
-                            <div class="chips-container">
-                              {project.tags.map((tag) => (
-                                <div class="single-chip">{tag}</div>
-                              ))}
-                            </div>
-                          </div>
-                          <div class="expand-indicator">
-                            <span class="expand-text">Click to expand</span>
-                            <span class="collapse-text" style="display: none;">Click to collapse</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <!-- Footer Note -->
-                  <div class="fold-content" style="margin-top: 3rem; border-top: 1px solid #353535; padding-top: 2rem;">
-                    <p class="lead" style="font-size: 14px; color: #a8a8a8;">
-                      Last updated: April 2026. This page showcases ongoing and completed projects.
-                    </p>
-                  </div>
-                </main>
+          {sections.map((section, si) => (
+            <section class="project-section">
+              <div class="section-rule">
+                <span class="prefix">//</span>
+                <span class="dash"></span>
+                <span class="title">{section.title}</span>
+                <span class="dash"></span>
+                <span class="note">{section.note}</span>
               </div>
-            </nav>
+              <div class="bento-grid">
+                {section.items.map((project) => (
+                  <div class="bento-card" data-project-id={project.id}>
+                    <div class="card-header">
+                      <h3 class="project-card-title">{project.title}</h3>
+                      {project.subtitle && <div class="project-subtitle">{project.subtitle}</div>}
+                    </div>
+                    <div class="card-content">
+                      <p class="project-short-description">{project.shortDescription}</p>
+                      <div class="project-full-description" style="display: none;">
+                        <Fragment set:html={project.fullDescription} />
+                      </div>
+                      <div class="chips-container">
+                        {project.tags.map((tag) => (
+                          <div class="single-chip small-chip">{tag}</div>
+                        ))}
+                      </div>
+                    </div>
+                    <div class="expand-indicator">
+                      <span class="expand-text">Click to expand ▾</span>
+                      <span class="collapse-text" style="display: none;">Click to collapse ▴</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {si === 0 && (
+                <p class="lead research-note">
+                  Both research projects are ongoing PhD work. I cannot share
+                  unpublished results here, but I am happy to talk about the
+                  physics — reach out via the contact links on the home page.
+                </p>
+              )}
+            </section>
+          ))}
+
+          <div class="ornament-divider dinkus">
+            <span class="glyph">❧</span>
           </div>
 
-          <style>
-            /* Bento Grid Container */
-            .bento-grid {
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-              gap: 24px;
-              margin: 2rem 0;
-              width: 100%;
-            }
+          <p class="folio" style="text-align:center;">Last updated April 2026</p>
+        </div>
+      </nav>
+    </div>
 
-            /* Bento Cards */
-            .bento-card {
-              background-color: rgba(53, 53, 53, 0.12);
-              border: 1px solid #353535;
-              border-radius: 12px;
-              padding: 24px;
-              backdrop-filter: blur(4px);
-              transition: all 200ms ease;
-              display: flex;
-              flex-direction: column;
-              cursor: pointer;
-              position: relative;
-            }
-
-      .bento-card:hover {
-        border-color: #803329;
-        background-color: rgba(53, 53, 53, 0.18);
-        box-shadow: 0 8px 24px rgba(128, 51, 41, 0.12);
+    <style>
+      .fold-content { max-width: var(--content-max); }
+      .research-note {
+        font-size: var(--text-small);
+        color: var(--text-muted);
+        margin-top: 1.25rem;
       }
 
+      /* Bento grid of paper cards */
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 20px;
+        width: 100%;
+      }
+      .project-section { display: flex; flex-direction: column; }
+
+      .bento-card {
+        background-color: var(--surface-card);
+        background-image: var(--paper-grain);
+        background-size: var(--paper-grain-size);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 22px;
+        box-shadow: var(--shadow-sheet);
+        transition: transform var(--dur-base) var(--ease-paper),
+                    box-shadow var(--dur-base) var(--ease-paper),
+                    border-color var(--dur-base) var(--ease-paper);
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        position: relative;
+      }
+      .bento-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--rule-strong);
+        box-shadow: var(--shadow-lift);
+      }
       .bento-card.expanded {
         grid-column: 1 / -1;
-        background-color: rgba(53, 53, 53, 0.22);
+        background-color: var(--paper-050);
       }
 
-      /* Card Header */
       .card-header {
         margin-bottom: 1rem;
-        border-bottom: 1px solid #353535;
-        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border-soft);
+        padding-bottom: 0.9rem;
       }
-
       .project-card-title {
         margin: 0;
-        font-size: 1.3rem;
-        color: #803329;
-        line-height: 1.3;
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        font-weight: var(--fw-medium);
+        color: var(--text-heading);
+        line-height: 1.2;
       }
-
       .project-subtitle {
-        color: #a8a8a8;
-        font-size: 0.9rem;
-        font-family: IBM Plex Mono, sans-serif;
-        margin-top: 0.5rem;
-        letter-spacing: 0.5px;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        font-family: var(--font-mono);
+        margin-top: 0.4rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
       }
 
-      /* Card Content */
-      .card-content {
-        flex: 1;
-      }
-
+      .card-content { flex: 1; }
       .project-short-description {
-        color: #D4D4CA;
-        font-size: 15px;
+        color: var(--text-body);
+        font-size: var(--text-small);
         line-height: 1.5;
         margin-bottom: 1rem;
       }
 
+      /* Illuminated initial — Capo Nodi drop cap on the card copy,
+         echoing the home-page frontispiece (ink, unframed to stay quiet). */
+      .project-short-description::first-letter,
+      .project-full-description::first-letter,
+      .project-full-description > p:first-child::first-letter {
+        font-family: var(--font-dropcap);
+        font-size: 3em;
+        line-height: 0.72;
+        float: left;
+        margin: 0.02em 0.09em -0.02em 0;
+        color: var(--ink-900);
+        font-weight: 400;
+      }
       .project-full-description {
-        color: #c0c0c0;
-        font-size: 14px;
+        color: var(--text-body);
+        font-size: var(--text-small);
         line-height: 1.6;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
       }
-
       .project-full-description :global(.lead) {
-        font-size: 14px;
+        font-size: var(--text-small);
         line-height: 1.6;
+        color: var(--text-body);
+        max-width: none;
       }
-
-      .project-full-description :global(.ol-lead) {
-        margin-left: 1.5rem;
-        margin-top: 0.5rem;
-        margin-bottom: 1rem;
+      .project-full-description :global(ol),
+      .project-full-description :global(ul) {
+        margin: 0.5rem 0 1rem 1.2rem;
+        padding-left: 1rem;
       }
-
-      .project-full-description :global(.ol-lead li) {
-        margin-bottom: 0.8rem;
+      .project-full-description :global(li) {
+        margin-bottom: 0.6rem;
         line-height: 1.5;
       }
-
-      .project-full-description :global(.project-figure) {
-        margin: 1.5rem 0;
-      }
-
+      .project-full-description :global(.project-figure) { margin: 1.5rem 0; }
       .project-full-description :global(.project-figure-image) {
         width: 100%;
-        border-radius: 8px;
-        border: 1px solid #353535;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+      }
+      .project-full-description :global(figcaption) {
+        color: var(--text-muted);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        text-align: center;
+        margin-top: 0.6rem;
+        line-height: 1.4;
       }
 
-      /* Tags/Chips */
       .chips-container {
         display: flex;
         flex-wrap: wrap;
@@ -318,91 +289,38 @@ const currentResearch: ProjectCard[] = [
         margin-top: 1rem;
       }
 
-      .single-chip {
-        background-color: rgba(128, 51, 41, 0.2);
-        border: 1px solid #803329;
-        color: #D4D4CA;
-        padding: 6px 12px;
-        border-radius: 6px;
-        font-size: 12px;
-        font-family: IBM Plex Mono, sans-serif;
-        letter-spacing: 0.3px;
-      }
-
-      /* Expand Indicator */
       .expand-indicator {
         text-align: center;
         margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid #353535;
-        color: #803329;
-        font-size: 13px;
-        font-family: IBM Plex Mono, sans-serif;
-        letter-spacing: 0.5px;
+        padding-top: 0.9rem;
+        border-top: 1px dashed var(--rule-strong);
+        color: var(--text-rubric);
+        font-size: 12px;
+        font-family: var(--font-mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
 
-      /* Project Section */
-      .project-section {
-        margin-bottom: 2rem;
-      }
-
-      /* Responsive Design */
       @media screen and (max-width: 991px) {
-        .bento-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-      }
-
-      @media screen and (max-width: 767px) {
-        .bento-grid {
-          gap: 16px;
-        }
-
-        .bento-card {
-          padding: 18px;
-          border-radius: 8px;
-        }
-
-        .card-header {
-          margin-bottom: 0.8rem;
-          padding-bottom: 0.8rem;
-        }
-
-        .project-card-title {
-          font-size: 1.1rem;
-        }
-
-        .project-short-description {
-          font-size: 14px;
-        }
-
-        .project-full-description {
-          font-size: 13px;
-        }
-
-        .single-chip {
-          font-size: 11px;
-          padding: 5px 10px;
-        }
+        .bento-grid { grid-template-columns: 1fr; gap: 18px; }
       }
     </style>
 
     <script is:inline>
       function initializeProjectCards() {
         const grids = document.querySelectorAll('.bento-grid');
-        
+
         grids.forEach(grid => {
           grid.addEventListener('click', (event) => {
             const card = event.target.closest('.bento-card');
             if (!card) return;
-            
+
             const shortDesc = card.querySelector('.project-short-description');
             const fullDesc = card.querySelector('.project-full-description');
             const expandText = card.querySelector('.expand-text');
             const collapseText = card.querySelector('.collapse-text');
             const isExpanded = card.classList.contains('expanded');
-            
+
             // Close all other expanded cards
             const allCards = grid.querySelectorAll('.bento-card');
             allCards.forEach(otherCard => {
@@ -412,14 +330,14 @@ const currentResearch: ProjectCard[] = [
                 const otherFull = otherCard.querySelector('.project-full-description');
                 const otherExpand = otherCard.querySelector('.expand-text');
                 const otherCollapse = otherCard.querySelector('.collapse-text');
-                
+
                 otherShort.style.display = 'block';
                 otherFull.style.display = 'none';
                 otherExpand.style.display = 'inline';
                 otherCollapse.style.display = 'none';
               }
             });
-            
+
             // Toggle current card
             if (isExpanded) {
               card.classList.remove('expanded');
@@ -433,7 +351,7 @@ const currentResearch: ProjectCard[] = [
               fullDesc.style.display = 'block';
               expandText.style.display = 'none';
               collapseText.style.display = 'inline';
-              
+
               // Smooth scroll to the card
               setTimeout(() => {
                 card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -442,14 +360,12 @@ const currentResearch: ProjectCard[] = [
           });
         });
       }
-      
+
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initializeProjectCards);
       } else {
         initializeProjectCards();
       }
     </script>
-
-    <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
   </body>
 </html>
